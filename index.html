@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Purey suneiku!</title>
+    <link rel="stylesheet" type="text/css" href="./game/styles/index-styles.css">
+    <link rel="stylesheet" type="text/css" href="./game/styles/playing-field-styles.css">
+</head>
+
+<body>
+    <canvas class="playing-field">
+    </canvas>
+
+    <!--Es6 import.. Y U NOT HERE YET?-->
+    <!--P.S. Too lazy to use require.js-->
+    <!--P.S.S Fuck system.js-->
+    <script src="./game/enumerations/feed-types-enum.js"></script>
+    <script src="./game/enumerations/segment-types-enum.js"></script>
+    <script src="./game/enumerations/directions-enum.js"></script>
+    <script src="./game/common/helpers.js"></script>
+    <script src="./game/common/constants.js"></script>
+
+    <script src="./game/renderers/base-renderer.js"></script>
+    <script src="./game/renderers/feed-renderer.js"></script>
+    <script src="./game/renderers/snake-renderer.js"></script>
+
+    <script src="./game/models/game-object.js"></script>
+    <script src="./game/models/playing-field.js"></script>
+    <script src="./game/models/feed.js"></script>
+    <script src="./game/models/snake-segment.js"></script>
+    <script src="./game/models/snake.js"></script>
+
+    <script src="./game/engine/game-engine.js"></script>
+    <script src="./game/engine/snake-game-engine.js"></script>
+    <script src="./game/game.js"></script>
+
+    <script>
+        'use strict';
+        let game = new Game();
+        game.start();
+    </script>
+
+</body>
+
+</html>

@@ -32,6 +32,7 @@ class FeedRenderer extends Renderer
     {
         this.context.save();
 
+        // Heavy coupling
         this.context.fillStyle = 'rgb(230, 182, 44)';
 
         this.context.beginPath();

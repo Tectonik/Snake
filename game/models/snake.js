@@ -95,6 +95,7 @@ class Snake extends GameObject
 
     hasBittenItsTail()
     {
+        // Will never work without better segment spacing
         let snakeHasBittenTail = false;
         for (let current = 1, snakeLength = this.segments.length; current < snakeLength; ++current)
         {

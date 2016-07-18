@@ -92,7 +92,6 @@ class SnakeGameEngine extends GameEngine
 
     _startGameLogic()
     {
-        // Event
         this._gameStepIntervalId = setInterval(
             // Example of array deconstruction
             ([snake, engine, feedCollection, gameField, goThroughOtherSide, gameLost]) =>

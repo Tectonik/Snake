@@ -18,7 +18,7 @@ class PlayingField extends GameObject
 
     objectIsWithinBounds(object)
     {
-        let objectIsInFieldBounds =
+        let objectIsWithinFieldBounds =
             object.y >= this.y &&
             object.x >= this.x &&
             object.y + object.height <= this.height &&
@@ -27,6 +27,6 @@ class PlayingField extends GameObject
         // Example of feature I forgot about long ago
         // console.log(`${object.constructor.name} x:${object.x} : y:${object.y}`);
 
-        return objectIsInFieldBounds;
+        return objectIsWithinFieldBounds;
     }
 }

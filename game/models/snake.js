@@ -22,6 +22,11 @@ class Snake extends GameObject
         return this._head;
     }
 
+    set head(value)
+    {
+        this._head = value;
+    }
+
     get x()
     {
         return this.head.x;
@@ -73,24 +78,26 @@ class Snake extends GameObject
         // Queue
         // Slow, needs reimplementation
         // Segments need better spacing
-        for (let current = this.segments.length - 1; current > 0; --current)
-        {
-            let lastSegment = this.segments[current - 1];
-            let currentSegment = this.segments[current];
+        // for (let current = this.segments.length - 1; current > 0; --current)
+        // {
+        //     let lastSegment = this.segments[current - 1];
+        //     let currentSegment = this.segments[current];
 
-            currentSegment.x = lastSegment.x;
-            currentSegment.y = lastSegment.y;
-        }
+        //     currentSegment.x = lastSegment.x;
+        //     currentSegment.y = lastSegment.y;
+        // }
 
-        this.segments[0].x += nextCoordinates.x;
-        this.segments[0].y += nextCoordinates.y;
+        // this.segments[0].x += nextCoordinates.x;
+        // this.segments[0].y += nextCoordinates.y;
 
         // Faster, also needs reimplementation
-        // let currentSegment = this.segments.pop();
-        // currentSegment.x += nextCoordinates.x;
-        // currentSegment.y += nextCoordinates.y;
+        let currentSegment = this.segments.pop();
 
-        // this.segments.unshift(currentSegment);
+        currentSegment.x = (this.head + nextCoordinates.x);
+        currentSegment.y = (this.head + nextCoordinates.y);
+
+        this.segments.unshift(currentSegment);
+        this.head = currentSegment;
     }
 
     hasBittenItsTail()

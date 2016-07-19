@@ -37,7 +37,7 @@ class FeedRenderer extends Renderer
 
         this.context.beginPath();
         this.renderers[this.objectToRender.type](this.objectToRender, this.context);
-        this.context.fill();
+        super.render();
 
         this.context.restore();
     }

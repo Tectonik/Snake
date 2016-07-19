@@ -47,7 +47,7 @@ class SnakeRenderer extends Renderer
 
         this.context.beginPath();
         this.renderers[this.objectToRender.segments[0].type](this.objectToRender, this.context);
-        this.context.fill();
+        super.render();
 
         this.context.restore();
     }

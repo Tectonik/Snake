@@ -103,8 +103,8 @@ class SnakeGameEngine extends GameEngine
                     .forEach(
                     (feed) =>
                     {
-                        let newX = helpers.getRandomInRange(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_WIDTH + feed.width);
-                        let newY = helpers.getRandomInRange(CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_HEIGHT + feed.height);
+                        let newX = helpers.getRandomInRange(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_WIDTH - feed.width);
+                        let newY = helpers.getRandomInRange(CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_HEIGHT - feed.height);
 
                         feed.x = newX;
                         feed.y = newY;

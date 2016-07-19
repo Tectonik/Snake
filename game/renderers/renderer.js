@@ -39,10 +39,8 @@ class Renderer
     }
 
     // TODO: Fix this
-    render(context)
+    render()
     {
-
-        context.beginPath();
 
         if (this.fillStyle === fillStyleEnum.fillAndStroke)
         {
@@ -57,7 +55,5 @@ class Renderer
         {
             this.context.stroke();
         }
-
-        context.restore();
     }
 }

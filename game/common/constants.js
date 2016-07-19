@@ -11,6 +11,7 @@ const CONSTANTS = {
     SNAKE_STARTING_LENGTH: 10,
     SNAKE_SPEED: 5,
     SNAKE_SIZE: 20,
+    SNAKE_DEFAULT_FILL_STYLE: fillStyleEnum.fill,
     SNAKE_DEFAULT_SEGMENT_TYPE: segmentTypesEnum.rectangle,
 
     FEED_SIZE: 10,

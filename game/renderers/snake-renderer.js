@@ -1,8 +1,8 @@
 class SnakeRenderer extends Renderer
 {
-    constructor(objectToRender, context)
+    constructor(objectToRender, context, fillStyle)
     {
-        super(objectToRender, context);
+        super(objectToRender, context, fillStyle);
 
         this._renderers[segmentTypesEnum.sphere] = function (objectToRender, context)
         {

@@ -1,11 +1,21 @@
 class Renderer
 {
-    constructor(objectToRender, context)
+    constructor(objectToRender, context, fillStyle = fillStyleEnum.fill)
     {
         this._objectToRender = objectToRender;
         this._context = context;
         this._renderers = {};
+        this._fillStyle = fillStyle;
+    }
 
+    get fillStyle()
+    {
+        return this._fillStyle;
+    }
+
+    set fillStyle(value)
+    {
+        this._fillStyle = value;
     }
 
     get renderers()
@@ -26,5 +36,28 @@ class Renderer
     get objectToRender()
     {
         return this._objectToRender;
+    }
+
+    // TODO: Fix this
+    render(context)
+    {
+
+        context.beginPath();
+
+        if (this.fillStyle === fillStyleEnum.fillAndStroke)
+        {
+            this.context.fill();
+            this.context.stroke();
+        }
+        else if (this.fillStyle === fillStyleEnum.fill)
+        {
+            this.context.fill();
+        }
+        else if (this.fillStyle === fillStyleEnum.stroke)
+        {
+            this.context.stroke();
+        }
+
+        context.restore();
     }
 }

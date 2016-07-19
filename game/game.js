@@ -10,7 +10,8 @@ class Game
             CONSTANTS.SNAKE_STARTING_LENGTH,
             CONSTANTS.SNAKE_SPEED,
             CONSTANTS.SNAKE_SIZE,
-            CONSTANTS.SNAKE_SIZE
+            CONSTANTS.SNAKE_SIZE,
+            CONSTANTS.SNAKE_DEFAULT_SEGMENT_TYPE
         );
 
         let feedStartingCoordinates = Feed.randomizeCoordinates(
@@ -25,7 +26,7 @@ class Game
             feedStartingCoordinates.y,
             CONSTANTS.FEED_SIZE,
             CONSTANTS.FEED_SIZE,
-            CONSTANTS.FEED_DEFAULT_FILL_STYLE
+            CONSTANTS.FEED_DEFAULT_TYPE
         );
 
         let canvas = document.getElementsByClassName('playing-field')[0];
@@ -36,8 +37,8 @@ class Game
             CONSTANTS.FIELD_WIDTH
         );
 
-        let snakeRenderer = new SnakeRenderer(snake, this.playingField.gameContext);
-        let feedRenderer = new FeedRenderer(feed, this.playingField.gameContext);
+        let snakeRenderer = new SnakeRenderer(snake, this.playingField.gameContext, CONSTANTS.SNAKE_DEFAULT_FILL_STYLE);
+        let feedRenderer = new FeedRenderer(feed, this.playingField.gameContext, CONSTANTS.FEED_DEFAULT_FILL_STYLE);
 
         this._engine = new SnakeGameEngine(
             this._playingField,

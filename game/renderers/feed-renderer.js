@@ -1,8 +1,8 @@
 class FeedRenderer extends Renderer
 {
-    constructor(objectToRender, context, fillStyle = fillStyleEnum.fill)
+    constructor(objectToRender, context, fillStyle)
     {
-        super(objectToRender, context);
+        super(objectToRender, context, fillStyle);
 
         this._renderers[feedTypesEnum.heart] = function (objectToRender, context)
         {

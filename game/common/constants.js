@@ -14,5 +14,6 @@ const CONSTANTS = {
     SNAKE_DEFAULT_SEGMENT_TYPE: segmentTypesEnum.rectangle,
 
     FEED_SIZE: 10,
+    FEED_DEFAULT_FILL_STYLE: fillStyleEnum.fill,
     FEED_DEFAULT_TYPE: feedTypesEnum.sphere
 };

@@ -1,6 +1,6 @@
 class FeedRenderer extends Renderer
 {
-    constructor(objectToRender, context)
+    constructor(objectToRender, context, fillStyle = fillStyleEnum.fill)
     {
         super(objectToRender, context);
 

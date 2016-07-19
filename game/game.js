@@ -24,7 +24,8 @@ class Game
             feedStartingCoordinates.x,
             feedStartingCoordinates.y,
             CONSTANTS.FEED_SIZE,
-            CONSTANTS.FEED_SIZE
+            CONSTANTS.FEED_SIZE,
+            CONSTANTS.FEED_DEFAULT_FILL_STYLE
         );
 
         let canvas = document.getElementsByClassName('playing-field')[0];

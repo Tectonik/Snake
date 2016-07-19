@@ -113,7 +113,7 @@ class SnakeGameEngine extends GameEngine
                 if (gameField.objectIsWithinBounds(snake) === false) { goThroughOtherSide(snake, gameField); }
                 if (snake.hasBittenItsTail()) { gameLost(); }
             },
-            CONSTANTS.FRAME_TIME_INTERVAL_IN_MILLISECONDS,
+            CONSTANTS.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS,
             [this.snake, this, this.feedCollection, this.playingField, this._goThroughOtherSide, this.gameLost]
         );
     }

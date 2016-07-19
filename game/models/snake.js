@@ -71,30 +71,10 @@ class Snake extends GameObject
     move(direction)
     {
         let nextCoordinates = this._getDeltaForDirection(direction);
-
-        // Allows for smooth movement
-        // Extremely slow
-        // Get last updated
-        // Queue
-        // Slow, needs reimplementation
-        // Segments need better spacing
-        // for (let current = this.segments.length - 1; current > 0; --current)
-        // {
-        //     let lastSegment = this.segments[current - 1];
-        //     let currentSegment = this.segments[current];
-
-        //     currentSegment.x = lastSegment.x;
-        //     currentSegment.y = lastSegment.y;
-        // }
-
-        // this.segments[0].x += nextCoordinates.x;
-        // this.segments[0].y += nextCoordinates.y;
-
-        // Faster, also needs reimplementation
         let currentSegment = this.segments.pop();
 
-        currentSegment.x = (this.head + nextCoordinates.x);
-        currentSegment.y = (this.head + nextCoordinates.y);
+        currentSegment.x = (this.head.x + nextCoordinates.x);
+        currentSegment.y = (this.head.y + nextCoordinates.y);
 
         this.segments.unshift(currentSegment);
         this.head = currentSegment;

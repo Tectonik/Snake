@@ -38,7 +38,7 @@ class Renderer
         return this._objectToRender;
     }
 
-    // TODO: Fix this
+    // TODO: Refactor
     render()
     {
 

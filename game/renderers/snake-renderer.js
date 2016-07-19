@@ -14,6 +14,7 @@ class SnakeRenderer extends Renderer
                     context.arc(
                         segment.x,
                         segment.y,
+                        // FIXME: Coupling
                         (segment.width + segment.height) / 2,
                         0,
                         2 * Math.PI
@@ -38,6 +39,7 @@ class SnakeRenderer extends Renderer
         };
     }
 
+    // TODO: Refactor
     render()
     {
         this.context.save();

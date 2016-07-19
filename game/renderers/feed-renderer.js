@@ -28,6 +28,7 @@ class FeedRenderer extends Renderer
         };
     }
 
+    // TODO: Refactor
     render()
     {
         this.context.save();

@@ -80,6 +80,7 @@ class Snake extends GameObject
         this.head = currentSegment;
     }
 
+    // TODO: Method needs implementation
     hasBittenItsTail()
     {
         // Will never work without better segment spacing
@@ -103,7 +104,7 @@ class Snake extends GameObject
         {
             let newSegment = new SnakeSegment(this.head.x, this.head.y, this.height, this.width, this.head.type);
             this.segments.push(newSegment);
-            // console.log('Feed caught, snake extended!');
+            console.log('Feed caught, snake extended!');
         }
 
         return feedHasBeenCaught;

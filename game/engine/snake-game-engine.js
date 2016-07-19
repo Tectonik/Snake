@@ -110,8 +110,15 @@ class SnakeGameEngine extends GameEngine
                         feed.y = newY;
                     });
 
-                if (gameField.objectIsWithinBounds(snake) === false) { goThroughOtherSide(snake, gameField); }
-                if (snake.hasBittenItsTail()) { gameLost(); }
+                if (gameField.objectIsWithinBounds(snake) === false)
+                {
+                    goThroughOtherSide(snake, gameField);
+                }
+
+                if (snake.hasBittenItsTail())
+                {
+                    gameLost();
+                }
             },
             CONSTANTS.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS,
             [this.snake, this, this.feedCollection, this.playingField, this._goThroughOtherSide, this.gameLost]
@@ -126,7 +133,7 @@ class SnakeGameEngine extends GameEngine
 
     gameWon()
     {
-
+        console.log('You are whiner! Ies!');
     }
 
     _goThroughOtherSide(snake, gameField)

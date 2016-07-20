@@ -1,14 +1,12 @@
 class SnakeGameEngine extends GameEngine
 {
-    constructor(playingField, snake, feedCollection, snakeRenderer, feedRenderers, renderingContext)
+    constructor(playingField, snake, feedCollection, renderers, renderingContext)
     {
-        super(renderingContext);
+        super(renderingContext, renderers);
 
         this._playingField = playingField;
         this._snake = snake;
         this._feedCollection = feedCollection;
-        this._snakeRenderer = snakeRenderer;
-        this._feedRenderers = feedRenderers;
         this._direction = directionsEnum.none;
 
         document.onkeydown = this.reactToArrowKeys(this);
@@ -37,16 +35,6 @@ class SnakeGameEngine extends GameEngine
     get feedCollection()
     {
         return this._feedCollection;
-    }
-
-    get snakeRenderer()
-    {
-        return this._snakeRenderer;
-    }
-
-    get feedRenderers()
-    {
-        return this._feedRenderers;
     }
 
     pause()
@@ -162,8 +150,7 @@ class SnakeGameEngine extends GameEngine
                     .gameContext
                     .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
 
-                snakeRenderer.render();
-                feedRenderers.forEach(feedRenderer => feedRenderer.render());
+                renderers.forEach(renderer => renderer.render());
 
                 window.requestAnimationFrame(renderAllParameters);
             };

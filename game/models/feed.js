@@ -17,13 +17,4 @@ class Feed extends GameObject
         this.x = nextX;
         this.y = nextY;
     }
-
-    // TODO: Refactor, use this
-    randomizeCoordinates(fieldTop, fieldLeft, fieldHeight, fieldWidth)
-    {
-        this.x = helpers.getRandomInRange(fieldLeft, fieldWidth - this.width);
-        this.y = helpers.getRandomInRange(fieldTop, fieldHeight - this.height);
-
-        return this;
-    }
 }

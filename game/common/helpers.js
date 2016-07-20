@@ -14,5 +14,15 @@ let helpers =
                 firstObject.y <= secondObject.y + secondObject.width;
 
             return objectsAreColliding;
+        },
+
+        getRandomCoordinates: (limits) =>
+        {
+            // TODO: Refactor, use this
+            this.x = helpers.getRandomInRange(limits.leftBound, limits.rightBound);
+            this.y = helpers.getRandomInRange(limits.upperBound, limits, downBound);
+
+            let randomCoordinates = { x, y };
+            return randomCoordinates;
         }
     };

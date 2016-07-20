@@ -16,11 +16,13 @@ class Game
         );
 
         // TODO: Fix major issue
-        let feedStartingCoordinates = Feed.randomizeCoordinates(
-            CONSTANTS.FIELD_TOP,
-            CONSTANTS.FIELD_LEFT,
-            CONSTANTS.FIELD_HEIGHT,
-            CONSTANTS.FIELD_WIDTH
+        let feedStartingCoordinates = helpers.getRandomCoordinates(
+            {
+                upperBound: CONSTANTS.FIELD_TOP,
+                leftBound: CONSTANTS.FIELD_LEFT,
+                downBound: CONSTANTS.FIELD_HEIGHT,
+                rightBound: CONSTANTS.FIELD_WIDTH
+            }
         );
 
         // TODO: Refactor x and y
@@ -47,8 +49,7 @@ class Game
             this._playingField,
             snake,
             [feed],
-            snakeRenderer,
-            [feedRenderer],
+            [snakeRenderer, feedRenderer],
             this._playingField.gameContext
         );
     }

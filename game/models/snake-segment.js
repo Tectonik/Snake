@@ -1,14 +1,30 @@
 class SnakeSegment extends GameObject
 {
-    constructor(startX, startY, height, width, segmentType = CONSTANTS.SNAKE_DEFAULT_SEGMENT_TYPE)
+    constructor(startX, startY, height, width)
     {
         super(startX, startY, height, width);
 
-        this._segmentType = segmentType;
+        this._leftNeighbour = null;
+        this._rightNeighbour = null;
     }
 
-    get type()
+    get leftNeighbour()
     {
-        return this._segmentType;
+        return this._leftNeighbour;
+    }
+
+    set leftNeighbour(value)
+    {
+        this._leftNeighbour = value;
+    }
+
+    get rightNeighbour()
+    {
+        return this._rightNeighbour;
+    }
+
+    set rightNeighbour(value)
+    {
+        this._rightNeighbour = value;
     }
 }

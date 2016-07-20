@@ -20,7 +20,7 @@ let helpers =
         {
             // TODO: Refactor, use this
             this.x = helpers.getRandomInRange(limits.leftBound, limits.rightBound);
-            this.y = helpers.getRandomInRange(limits.upperBound, limits, downBound);
+            this.y = helpers.getRandomInRange(limits.upperBound, limits.downBound);
 
             let randomCoordinates = { x, y };
             return randomCoordinates;

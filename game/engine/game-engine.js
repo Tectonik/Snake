@@ -11,8 +11,13 @@ class GameEngine
         return this._context;
     }
 
-    get renderer()
+    get renderers()
     {
-        return this._snakeRenderer;
+        return this._renderers;
+    }
+
+    set renderers(value)
+    {
+        this._renderers = value;
     }
 }

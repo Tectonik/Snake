@@ -45,7 +45,7 @@ class SnakeGameEngine extends GameEngine
     start()
     {
         this._startGameLogic();
-        this._startRendering();
+        this._startRendering(this.renderers, this.playingField);
     }
 
     reactToArrowKeys(engine)
@@ -91,7 +91,17 @@ class SnakeGameEngine extends GameEngine
                     .forEach(
                     (feed) =>
                     {
-                        feed.randomizeCoordinates(playingField.y, playingField.x, playingField.height, playingField.width);
+                        let newCoordinates = helpers.getRandomCoordinates(
+                            {
+                                upperBound: playingField.y,
+                                leftBound: playingField.x,
+                                downBound: playingField.height - feed.height,
+                                rightBound: playingField.width - feed.width
+                            }
+                        );
+
+                        feed.y = newCoordinates.y;
+                        feed.x = newCoordinates.x;
                     });
 
                 if (playingField.objectIsWithinBounds(snake) === false)
@@ -140,9 +150,9 @@ class SnakeGameEngine extends GameEngine
         }
     }
 
-    _startRendering()
+    _startRendering(renderers, playingField)
     {
-        function createRenderEverythingFunction(snakeRenderer, feedRenderers, playingField)
+        function createRenderEverythingFunction(renderers, playingField)
         {
             return function renderAllParameters()
             {
@@ -158,9 +168,8 @@ class SnakeGameEngine extends GameEngine
 
         window.requestAnimationFrame(
             createRenderEverythingFunction(
-                this.snakeRenderer,
-                this.feedRenderers,
-                this.playingField
+                renderers,
+                playingField
             )
         );
     }

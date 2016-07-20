@@ -5,13 +5,14 @@ class Snake extends GameObject
         super(startX, startY, height, width);
 
         this._speed = speed;
-        this._segments = [];
+        // Coupling
+        this._body = new SnakeBody(new SnakeSegment(10, 10, height, width, segmentType));
 
-        for (let current = 0; current < startingLength; ++current)
+        for (let current = 1; current < startingLength; ++current)
         {
             // Segment type
             let newSegment = new SnakeSegment(10, 10, height, width, segmentType);
-            this._segments.push(newSegment);
+            this.body.addToRight(newSegment);
         }
 
         this._head = this.segments[0];
@@ -25,6 +26,16 @@ class Snake extends GameObject
     set head(value)
     {
         this._head = value;
+    }
+
+    get body()
+    {
+        return this._body;
+    }
+
+    set body(value)
+    {
+        this._body = value;
     }
 
     get x()
@@ -49,7 +60,7 @@ class Snake extends GameObject
 
     get segments()
     {
-        return this._segments;
+        return this._body;
     }
 
     get speed()
@@ -71,12 +82,12 @@ class Snake extends GameObject
     move(direction)
     {
         let nextCoordinates = this._getDeltaForDirection(direction);
-        let currentSegment = this.segments.pop();
+        let currentSegment = this.body.popRightmostElement();
 
-        currentSegment.x = (this.head.x + nextCoordinates.x);
-        currentSegment.y = (this.head.y + nextCoordinates.y);
+        currentSegment.x = (this.body.head.x + nextCoordinates.x);
+        currentSegment.y = (this.body.head.y + nextCoordinates.y);
 
-        this.segments.unshift(currentSegment);
+        this.body.addToLeft(currentSegment);
         this.head = currentSegment;
     }
 

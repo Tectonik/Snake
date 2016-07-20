@@ -6,13 +6,13 @@ class Snake extends GameObject
 
         this._speed = speed;
         // Coupling
-        this._body = new SnakeBody(new SnakeSegment(10, 10, height, width, segmentType));
+        this._body = new SnakeBody(new SnakeSegment(10, 10, height, width, segmentType), segmentType);
 
         for (let current = 1; current < startingLength; ++current)
         {
             // Segment type
             let newSegment = new SnakeSegment(10, 10, height, width, segmentType);
-            this.body.addToRight(newSegment);
+            this.body.addToTail(newSegment);
         }
 
         this._head = this.segments[0];
@@ -87,7 +87,7 @@ class Snake extends GameObject
         currentSegment.x = (this.body.head.x + nextCoordinates.x);
         currentSegment.y = (this.body.head.y + nextCoordinates.y);
 
-        this.body.addToLeft(currentSegment);
+        this.body.addToHead(currentSegment);
         this.head = currentSegment;
     }
 

@@ -1,12 +1,13 @@
 class SnakeBody
 {
-    constructor(head, segmentType = CONSTANTS.SNAKE_DEFAULT_SEGMENT_TYPE, tail = head)
+    constructor(head, segmentType = CONSTANTS.SNAKE_DEFAULT_SEGMENT_TYPE)
     {
-        super();
+        // super();
 
         this._head = head;
-        this.tail = tail;
+        this._tail = head;
         this._segmentType = segmentType;
+        this._length = 1;
     }
 
     get head()
@@ -34,22 +35,35 @@ class SnakeBody
         return this._segmentType;
     }
 
-    addToRight(segment)
+    get length()
+    {
+        return this._length;
+    }
+
+    set length(value)
+    {
+        this._length = value;
+    }
+
+    addToTail(segment)
     {
         this.tail.rightNeighbour = segment;
         this.tail = segment;
+        ++this.length;
     }
 
-    addToLeft(segment)
+    addToHead(segment)
     {
         this.head.leftNeighbour = segment;
         this.head = segment;
+        ++this.length;
     }
 
     popRightmostElement()
     {
         let rightmostElement = this.tail;
         this.tail = rightmostElement.leftNeighbour;
+        --this.length;
 
         return rightmostElement;
     }
@@ -58,6 +72,7 @@ class SnakeBody
     {
         let leftmostElement = this.head;
         this.head = leftmostElement.rightNeighbour;
+        --this.length;
 
         return leftmostElement;
     }

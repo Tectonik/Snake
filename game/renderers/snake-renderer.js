@@ -25,7 +25,7 @@ class SnakeRenderer extends Renderer
         this._renderers[segmentTypesEnum.rectangle] = function (objectToRender, context)
         {
             // Better implementation required
-            let snakeSegments = objectToRender.segments;
+            let snakeSegments = objectToRender.body;
             snakeSegments.forEach(
                 (segment) =>
                 {
@@ -48,7 +48,7 @@ class SnakeRenderer extends Renderer
         this.context.fillStyle = 'rgb(0, 128, 0)';
 
         this.context.beginPath();
-        this.renderers[this.objectToRender.segments[0].type](this.objectToRender, this.context);
+        this.renderers[this.objectToRender.body.type](this.objectToRender, this.context);
         super.render();
 
         this.context.restore();

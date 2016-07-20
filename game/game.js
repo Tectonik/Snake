@@ -15,6 +15,7 @@ class Game
             CONSTANTS.SNAKE_DEFAULT_SEGMENT_TYPE
         );
 
+        // TODO: Fix major issue
         let feedStartingCoordinates = Feed.randomizeCoordinates(
             CONSTANTS.FIELD_TOP,
             CONSTANTS.FIELD_LEFT,
@@ -22,6 +23,7 @@ class Game
             CONSTANTS.FIELD_WIDTH
         );
 
+        // TODO: Refactor x and y
         let feed = new Feed(
             feedStartingCoordinates.x,
             feedStartingCoordinates.y,

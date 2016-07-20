@@ -94,7 +94,7 @@ class SnakeGameEngine extends GameEngine
     {
         this._gameStepIntervalId = setInterval(
             // Example of array deconstruction
-            ([snake, engine, feedCollection, gameField, goThroughOtherSide, gameLost]) =>
+            ([snake, engine, feedCollection, playingField, goThroughOtherSide, gameLost]) =>
             {
                 snake.move(engine.direction);
 
@@ -103,16 +103,12 @@ class SnakeGameEngine extends GameEngine
                     .forEach(
                     (feed) =>
                     {
-                        let newX = helpers.getRandomInRange(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_WIDTH - feed.width);
-                        let newY = helpers.getRandomInRange(CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_HEIGHT - feed.height);
-
-                        feed.x = newX;
-                        feed.y = newY;
+                        feed.randomizeCoordinates(playingField.y, playingField.x, playingField.height, playingField.width);
                     });
 
-                if (gameField.objectIsWithinBounds(snake) === false)
+                if (playingField.objectIsWithinBounds(snake) === false)
                 {
-                    goThroughOtherSide(snake, gameField);
+                    goThroughOtherSide(snake, playingField);
                 }
 
                 if (snake.hasBittenItsTail())

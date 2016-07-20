@@ -19,12 +19,11 @@ class Feed extends GameObject
     }
 
     // TODO: Refactor, use this
-    static randomizeCoordinates(fieldTop, fieldLeft, fieldHeight, fieldWidth)
+    randomizeCoordinates(fieldTop, fieldLeft, fieldHeight, fieldWidth)
     {
-        let x = helpers.getRandomInRange(fieldLeft, fieldWidth);
-        let y = helpers.getRandomInRange(fieldTop, fieldHeight);
+        this.x = helpers.getRandomInRange(fieldLeft, fieldWidth - this.width);
+        this.y = helpers.getRandomInRange(fieldTop, fieldHeight - this.height);
 
-        let nextCoordinates = { x, y };
-        return nextCoordinates;
+        return this;
     }
 }

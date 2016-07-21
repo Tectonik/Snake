@@ -14,18 +14,11 @@ class Snake extends GameObject
             let newSegment = new SnakeSegment(10, 10, height, width, segmentType);
             this.body.addToTail(newSegment);
         }
-
-        this._head = this.segments[0];
     }
 
     get head()
     {
-        return this._head;
-    }
-
-    set head(value)
-    {
-        this._head = value;
+        return this.body.head;
     }
 
     get body()
@@ -40,22 +33,22 @@ class Snake extends GameObject
 
     get x()
     {
-        return this.head.x;
+        return this.body.head.x;
     }
 
     set x(value)
     {
-        this.head.x = value;
+        this.head.body.x = value;
     }
 
     get y()
     {
-        return this.head.y;
+        return this.body.head.y;
     }
 
     set y(value)
     {
-        this.head.y = value;
+        this.head.body.y = value;
     }
 
     get segments()
@@ -75,46 +68,46 @@ class Snake extends GameObject
 
     moveToCoordinates(x, y)
     {
-        this.head.x = x;
-        this.head.y = y;
+        this.body.head.x = x;
+        this.body.head.y = y;
     }
 
     move(direction)
     {
+        // debugger;
         let nextCoordinates = this._getDeltaForDirection(direction);
         let currentSegment = this.body.popRightmostElement();
 
-        currentSegment.x = (this.body.head.x + nextCoordinates.x);
         currentSegment.y = (this.body.head.y + nextCoordinates.y);
+        currentSegment.x = (this.body.head.x + nextCoordinates.x);
 
         this.body.addToHead(currentSegment);
-        this.head = currentSegment;
     }
 
     // TODO: Method needs implementation
     hasBittenItsTail()
     {
         // Will never work without better segment spacing
-        let snakeHasBittenTail = false;
-        for (let current = 1, snakeLength = this.segments.length; current < snakeLength; ++current)
-        {
-            if (helpers.objectsAreColliding(this.head, this.segments[current]))
-            {
-                snakeHasBittenTail = true;
-            }
-        }
+        // let snakeHasBittenTail = false;
+        // for (let current = 1, snakeLength = this.segments.length; current < snakeLength; ++current)
+        // {
+        //     if (helpers.objectsAreColliding(this.head, this.segments[current]))
+        //     {
+        //         snakeHasBittenTail = true;
+        //     }
+        // }
 
         return false;
     }
 
     caughtFeed(feed)
     {
-        let feedHasBeenCaught = helpers.objectsAreColliding(feed, this.head);
+        let feedHasBeenCaught = helpers.objectsAreColliding(feed, this.body.head);
 
         if (feedHasBeenCaught)
         {
-            let newSegment = new SnakeSegment(this.head.x, this.head.y, this.height, this.width, this.head.type);
-            this.segments.push(newSegment);
+            let newSegment = new SnakeSegment(this.body.head.x, this.body.head.y, this.height, this.width, this.body.type);
+            this.body.addToTail(newSegment);
             console.log('Feed caught, snake extended!');
         }
 

@@ -48,21 +48,33 @@ class SnakeBody
     addToTail(segment)
     {
         this.tail.rightNeighbour = segment;
+        segment.leftNeighbour = this.tail;
+        segment.rightNeighbour = null;
+
         this.tail = segment;
+
         ++this.length;
     }
 
     addToHead(segment)
     {
         this.head.leftNeighbour = segment;
+        segment.rightNeighbour = this.head;
+        segment.leftNeighbour = null;
+
         this.head = segment;
+
         ++this.length;
     }
 
     popRightmostElement()
     {
         let rightmostElement = this.tail;
-        this.tail = rightmostElement.leftNeighbour;
+        let leftToRightmostElement = this.tail.leftNeighbour;
+
+        this.tail = leftToRightmostElement;
+        this.tail.rightNeighbour = null;
+
         --this.length;
 
         return rightmostElement;
@@ -71,7 +83,11 @@ class SnakeBody
     popLeftmostElement()
     {
         let leftmostElement = this.head;
-        this.head = leftmostElement.rightNeighbour;
+        let rightToLeftmostElement = this.head.rightNeighbour;
+
+        this.head = rightToLeftmostElement
+        this.head.leftNeighbour = null;
+
         --this.length;
 
         return leftmostElement;

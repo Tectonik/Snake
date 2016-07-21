@@ -111,7 +111,7 @@ class SnakeGameEngine extends GameEngine
 
                 if (snake.hasBittenItsTail())
                 {
-                    gameLost();
+                    gameLost(this);
                 }
             },
             CONSTANTS.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS,
@@ -119,9 +119,9 @@ class SnakeGameEngine extends GameEngine
         );
     }
 
-    gameLost()
+    gameLost(engine)
     {
-        this.pause();
+        engine.pause();
         console.log('Game lost, bounds reached');
     }
 

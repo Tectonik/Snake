@@ -87,16 +87,19 @@ class Snake extends GameObject
     hasBittenItsTail()
     {
         // Will never work without better segment spacing
-        // let snakeHasBittenTail = false;
-        // for (let current = 1, snakeLength = this.segments.length; current < snakeLength; ++current)
-        // {
-        //     if (helpers.objectsAreColliding(this.body.head, this.segments[current]))
-        //     {
-        //         snakeHasBittenTail = true;
-        //     }
-        // }
+        let snakeHasBittenTail = false;
+        let currentSegment = this.body.head.rightNeighbour;
+        while (currentSegment)
+        {
+            if (helpers.objectsAreColliding(this.body.head, currentSegment))
+            {
+                snakeHasBittenTail = true;
+            }
 
-        return false;
+            currentSegment = currentSegment.rightNeighbour;
+        }
+
+        return snakeHasBittenTail;
     }
 
     caughtFeed(feed)

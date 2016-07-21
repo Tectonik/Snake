@@ -8,6 +8,7 @@ class SnakeGameEngine extends GameEngine
         this._snake = snake;
         this._feedCollection = feedCollection;
         this._direction = directionsEnum.none;
+        // this._frameCount = 0;
 
         document.onkeydown = this.reactToArrowKeys(this);
     }
@@ -36,6 +37,16 @@ class SnakeGameEngine extends GameEngine
     {
         return this._feedCollection;
     }
+
+    // get frameCount()
+    // {
+    //     return this._frameCount;
+    // }
+
+    // set frameCount(value)
+    // {
+    //     this._frameCount = value;
+    // }
 
     pause()
     {
@@ -152,10 +163,12 @@ class SnakeGameEngine extends GameEngine
 
     _startRendering(renderers, playingField)
     {
+        let frameCount = { value: 0 };
         function createRenderEverythingFunction(renderers, playingField)
         {
             return function renderAllParameters()
             {
+                ++frameCount.value;
                 playingField
                     .gameContext
                     .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
@@ -165,6 +178,13 @@ class SnakeGameEngine extends GameEngine
                 window.requestAnimationFrame(renderAllParameters);
             };
         }
+
+        setInterval((x) =>
+        {
+            console.log(`Framerate: ${frameCount.value}`);
+            frameCount.value = 0;
+        },
+            1000);
 
         window.requestAnimationFrame(
             createRenderEverythingFunction(

@@ -74,7 +74,6 @@ class Snake extends GameObject
 
     move(direction)
     {
-        // debugger;
         let nextCoordinates = this._getDeltaForDirection(direction);
         let currentSegment = this.body.popRightmostElement();
 
@@ -91,7 +90,7 @@ class Snake extends GameObject
         // let snakeHasBittenTail = false;
         // for (let current = 1, snakeLength = this.segments.length; current < snakeLength; ++current)
         // {
-        //     if (helpers.objectsAreColliding(this.head, this.segments[current]))
+        //     if (helpers.objectsAreColliding(this.body.head, this.segments[current]))
         //     {
         //         snakeHasBittenTail = true;
         //     }

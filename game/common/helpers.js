@@ -8,7 +8,8 @@ let helpers =
 
         objectsAreColliding: (firstObject, secondObject) =>
         {
-            let objectsAreColliding = firstObject.x >= secondObject.x - secondObject.width &&
+            let objectsAreColliding =
+                firstObject.x >= secondObject.x - secondObject.width &&
                 firstObject.x <= secondObject.x + secondObject.width &&
                 firstObject.y >= secondObject.y - secondObject.width &&
                 firstObject.y <= secondObject.y + secondObject.width;
@@ -18,7 +19,6 @@ let helpers =
 
         getRandomCoordinates: (limits) =>
         {
-            // TODO: Refactor, use this
             this.x = helpers.getRandomInRange(limits.leftBound, limits.rightBound);
             this.y = helpers.getRandomInRange(limits.upperBound, limits.downBound);
 

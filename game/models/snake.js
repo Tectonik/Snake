@@ -6,12 +6,12 @@ class Snake extends GameObject
 
         this._speed = speed;
         // Coupling
-        this._body = new SnakeBody(new SnakeSegment(10, 10, height, width, segmentType), segmentType);
+        this._body = new SnakeBodyDequeue(new LinkedSnakeSegment(10, 10, height, width, segmentType), segmentType);
 
         for (let current = 1; current < startingLength; ++current)
         {
             // Segment type
-            let newSegment = new SnakeSegment(10, 10, height, width, segmentType);
+            let newSegment = new LinkedSnakeSegment(10, 10, height, width, segmentType);
             this.body.addToTail(newSegment);
         }
     }
@@ -75,12 +75,12 @@ class Snake extends GameObject
     move(direction)
     {
         let nextCoordinates = this._getDeltaForDirection(direction);
-        let currentSegment = this.body.popRightmostElement();
+        let lastMovedSegment = this.body.popRightmostElement();
 
-        currentSegment.y = (this.body.head.y + nextCoordinates.y);
-        currentSegment.x = (this.body.head.x + nextCoordinates.x);
+        lastMovedSegment.y = (this.body.head.y + nextCoordinates.y);
+        lastMovedSegment.x = (this.body.head.x + nextCoordinates.x);
 
-        this.body.addToHead(currentSegment);
+        this.body.addToHead(lastMovedSegment);
     }
 
     // TODO: Method needs implementation
@@ -99,7 +99,7 @@ class Snake extends GameObject
             currentSegment = currentSegment.rightNeighbour;
         }
 
-        return snakeHasBittenTail;
+        return false;
     }
 
     caughtFeed(feed)
@@ -108,7 +108,7 @@ class Snake extends GameObject
 
         if (feedHasBeenCaught)
         {
-            let newSegment = new SnakeSegment(this.body.head.x, this.body.head.y, this.height, this.width, this.body.type);
+            let newSegment = new LinkedSnakeSegment(this.body.head.x, this.body.head.y, this.height, this.width, this.body.type);
             this.body.addToTail(newSegment);
             console.log('Feed caught, snake extended!');
         }

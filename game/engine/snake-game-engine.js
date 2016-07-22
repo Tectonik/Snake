@@ -8,7 +8,6 @@ class SnakeGameEngine extends GameEngine
         this._snake = snake;
         this._feedCollection = feedCollection;
         this._direction = directionsEnum.none;
-        // this._frameCount = 0;
 
         document.onkeydown = this.reactToArrowKeys(this);
     }
@@ -37,16 +36,6 @@ class SnakeGameEngine extends GameEngine
     {
         return this._feedCollection;
     }
-
-    // get frameCount()
-    // {
-    //     return this._frameCount;
-    // }
-
-    // set frameCount(value)
-    // {
-    //     this._frameCount = value;
-    // }
 
     pause()
     {
@@ -89,11 +78,22 @@ class SnakeGameEngine extends GameEngine
         };
     }
 
+    gameLost(engine)
+    {
+        this.pause();
+        console.log('Game lost, bounds reached');
+    }
+
+    gameWon()
+    {
+        console.log('You are whiner! Ies!');
+    }
+
     _startGameLogic()
     {
         this._gameStepIntervalId = setInterval(
             // Example of array deconstruction
-            ([snake, engine, feedCollection, playingField, goThroughOtherSide, gameLost]) =>
+            ([snake, engine, feedCollection, playingField, goThroughOtherSide]) =>
             {
                 snake.move(engine.direction);
 
@@ -122,23 +122,12 @@ class SnakeGameEngine extends GameEngine
 
                 if (snake.hasBittenItsTail())
                 {
-                    gameLost(this);
+                    engine.gameLost();
                 }
             },
             CONSTANTS.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS,
-            [this.snake, this, this.feedCollection, this.playingField, this._goThroughOtherSide, this.gameLost]
+            [this.snake, this, this.feedCollection, this.playingField, this._goThroughOtherSide]
         );
-    }
-
-    gameLost(engine)
-    {
-        engine.pause();
-        console.log('Game lost, bounds reached');
-    }
-
-    gameWon()
-    {
-        console.log('You are whiner! Ies!');
     }
 
     _goThroughOtherSide(snake, gameField)
@@ -161,14 +150,13 @@ class SnakeGameEngine extends GameEngine
         }
     }
 
-    _startRendering(renderers, playingField)
+    _startRendering(renderers, playingField, engine)
     {
-        let frameCount = { value: 0 };
-        function createRenderEverythingFunction(renderers, playingField)
+        function createRenderEverythingFunction(renderers, playingField, engine)
         {
             return function renderAllParameters()
             {
-                ++frameCount.value;
+                ++engine.frameCount;
                 playingField
                     .gameContext
                     .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
@@ -181,15 +169,16 @@ class SnakeGameEngine extends GameEngine
 
         setInterval((x) =>
         {
-            console.log(`Framerate: ${frameCount.value}`);
-            frameCount.value = 0;
+            console.log(`Framerate: ${frameCount}`);
+            engine.resetframeCount();
         },
             1000);
 
         window.requestAnimationFrame(
             createRenderEverythingFunction(
                 renderers,
-                playingField
+                playingField,
+                engine
             )
         );
     }

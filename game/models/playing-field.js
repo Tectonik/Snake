@@ -6,14 +6,15 @@ class PlayingField extends GameObject
 
         canvas.height = height;
         canvas.width = width;
+        // Coupling?
         canvas.display = 'inline-block';
 
-        this._gameContext = canvas.getContext('2d');
+        this._context = canvas.getContext('2d');
     }
 
-    get gameContext()
+    get context()
     {
-        return this._gameContext;
+        return this._context;
     }
 
     objectIsWithinBounds(object)

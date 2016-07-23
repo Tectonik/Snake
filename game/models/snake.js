@@ -5,13 +5,11 @@ class Snake extends GameObject
         super(startX, startY, height, width);
 
         this._speed = speed;
-        // Coupling
-        this._body = new SnakeBodyDequeue(new LinkedSnakeSegment(10, 10, height, width, segmentType), segmentType);
+        this._body = new SnakeBodyDequeue(new LinkedSnakeSegment(CONSTANTS.SNAKE_STARTING_X, CONSTANTS.SNAKE_STARTING_Y, height, width, segmentType), segmentType);
 
         for (let current = 1; current < startingLength; ++current)
         {
-            // Segment type
-            let newSegment = new LinkedSnakeSegment(10, 10, height, width, segmentType);
+            let newSegment = new LinkedSnakeSegment(CONSTANTS.SNAKE_STARTING_X, CONSTANTS.SNAKE_STARTING_Y, height, width, segmentType);
             this.body.addToTail(newSegment);
         }
     }

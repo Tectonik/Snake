@@ -37,6 +37,21 @@ class SnakeGameEngine extends GameEngine
         return this._feedCollection;
     }
 
+    resetframeCount()
+    {
+        this.frameCount = 0;
+    }
+
+    increaseframeCount()
+    {
+        ++this.frameCount;
+    }
+
+    changeDirection(newDirection)
+    {
+        this.direction = newDirection;
+    }
+
     pause()
     {
         clearInterval(this._gameStepIntervalId);
@@ -45,34 +60,37 @@ class SnakeGameEngine extends GameEngine
     start()
     {
         this._startGameLogic();
-        this._startRendering(this.renderers, this.playingField);
+        this._startRendering(this.renderers, this.playingField, this);
     }
 
     reactToArrowKeys(engine)
     {
         // Don't forget about the cool springy effect
         let disabledDirection = directionsEnum.none;
+
+        let directionKeys = {
+            37: directionsEnum.left,
+            38: directionsEnum.up,
+            39: directionsEnum.right,
+            40: directionsEnum.down
+        };
+
+        // FIXME: Fuck.... What shite code!
+        let oppositeDirection = {};
+        oppositeDirection[directionsEnum.right] = directionsEnum.left;
+        oppositeDirection[directionsEnum.down] = directionsEnum.up;
+        oppositeDirection[directionsEnum.left] = directionsEnum.right;
+        oppositeDirection[directionsEnum.up] = directionsEnum.down
+
         return function (keypress)
         {
-            if (keypress)
+            if (keypress && directionKeys.hasOwnProperty(+keypress.keyCode))
             {
-                switch (+keypress.keyCode)
+                let currentKey = directionKeys[+keypress.keyCode];
+                let currentDirection = engine.direction;
+                if (currentDirection !== oppositeDirection[currentKey])
                 {
-                    case 38:
-                        if (engine.direction !== directionsEnum.down) { engine.direction = directionsEnum.up; }
-                        break;
-                    case 40:
-                        if (engine.direction !== directionsEnum.up) { engine.direction = directionsEnum.down; }
-                        break;
-                    case 37:
-                        if (engine.direction !== directionsEnum.right) { engine.direction = directionsEnum.left; }
-                        break;
-                    case 39:
-                        if (engine.direction !== directionsEnum.left) { engine.direction = directionsEnum.right; }
-                        break;
-                    default:
-                        console.log('incorrect code: ' + keypress.keyCode);
-                        break;
+                    engine.changeDirection(currentKey)
                 }
             }
         };
@@ -156,9 +174,9 @@ class SnakeGameEngine extends GameEngine
         {
             return function renderAllParameters()
             {
-                ++engine.frameCount;
+                engine.increaseframeCount();
                 playingField
-                    .gameContext
+                    .context
                     .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
 
                 renderers.forEach(renderer => renderer.render());
@@ -169,7 +187,7 @@ class SnakeGameEngine extends GameEngine
 
         setInterval((x) =>
         {
-            console.log(`Framerate: ${frameCount}`);
+            console.log(`Framerate: ${engine.frameCount}`);
             engine.resetframeCount();
         },
             1000);

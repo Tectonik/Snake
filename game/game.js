@@ -42,8 +42,8 @@ class Game
             CONSTANTS.FIELD_WIDTH
         );
 
-        let snakeRenderer = new SnakeRenderer(snake, this.playingField.gameContext, CONSTANTS.SNAKE_DEFAULT_FILL_STYLE);
-        let feedRenderer = new FeedRenderer(feed, this.playingField.gameContext, CONSTANTS.FEED_DEFAULT_FILL_STYLE);
+        let snakeRenderer = new SnakeRenderer(snake, this.playingField.context, CONSTANTS.SNAKE_DEFAULT_FILL_STYLE);
+        let feedRenderer = new FeedRenderer(feed, this.playingField.context, CONSTANTS.FEED_DEFAULT_FILL_STYLE);
 
         this._engine = new SnakeGameEngine(
             this._playingField,

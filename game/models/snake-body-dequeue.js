@@ -100,4 +100,19 @@ class SnakeBodyDequeue
             currentSegment = currentSegment.rightNeighbour;
         }
     }
+
+    mapToArray(callback)
+    {
+        let currentSegment = this.head;
+        let result = [];
+        while (currentSegment)
+        {
+            let currentResult = callback(currentSegment);
+            currentSegment = currentSegment.rightNeighbour;
+
+            result.push(currentResult);
+        }
+
+        return result;
+    }
 }

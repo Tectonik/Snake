@@ -42,7 +42,7 @@ class SnakeGameEngine extends GameEngine
         this.frameCount = 0;
     }
 
-    increaseframeCount()
+    increaseFrameCount()
     {
         ++this.frameCount;
     }
@@ -150,6 +150,7 @@ class SnakeGameEngine extends GameEngine
 
     _goThroughOtherSide(snake, gameField)
     {
+        // TODO: Refactor
         if (snake.y < gameField.y)
         {
             snake.moveToCoordinates(snake.x, gameField.height - snake.height);
@@ -174,7 +175,7 @@ class SnakeGameEngine extends GameEngine
         {
             return function renderAllParameters()
             {
-                engine.increaseframeCount();
+                engine.increaseFrameCount();
                 playingField
                     .context
                     .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
@@ -185,12 +186,14 @@ class SnakeGameEngine extends GameEngine
             };
         }
 
-        setInterval((x) =>
-        {
-            console.log(`Framerate: ${engine.frameCount}`);
-            engine.resetframeCount();
-        },
-            1000);
+        setInterval(
+            (engine) =>
+            {
+                console.log(`Framerate: ${engine.frameCount}`);
+                engine.resetframeCount();
+            },
+            1000,
+            [engine]);
 
         window.requestAnimationFrame(
             createRenderEverythingFunction(

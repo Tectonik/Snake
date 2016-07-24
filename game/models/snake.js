@@ -12,6 +12,10 @@ class Snake extends GameObject
             let newSegment = new LinkedSnakeSegment(CONSTANTS.SNAKE_STARTING_X, CONSTANTS.SNAKE_STARTING_Y, height, width, segmentType);
             this.body.addToTail(newSegment);
         }
+
+        this._allSegmentXCoordinates = new Set(this.body.mapToArray((segment) => segment.x));
+        this._allSegmentYCoordinates = new Set(this.body.mapToArray((segment) => segment.y));
+        debugger;
     }
 
     get head()

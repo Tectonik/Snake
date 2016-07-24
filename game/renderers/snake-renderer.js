@@ -22,20 +22,16 @@ class SnakeRenderer extends Renderer
                 });
         };
 
-        this._renderers[segmentTypes.rectangle] = function (objectToRender, context)
+        this._renderers[segmentTypes.rectangle] = function (snake, context)
         {
             // Better implementation required
-            let snakeSegments = objectToRender.body;
-            snakeSegments.forEach(
-                (segment) =>
-                {
-                    context.rect(
-                        segment.x,
-                        segment.y,
-                        segment.width,
-                        segment.height
-                    );
-                });
+            let snakeBody = snake.body;
+            context.rect(
+                snakeBody.head.x,
+                snakeBody.head.y,
+                snakeBody.head.width,
+                snakeBody.head.height
+            );
         };
     }
 
@@ -52,5 +48,16 @@ class SnakeRenderer extends Renderer
         super.render();
 
         this.context.restore();
+    }
+
+    unrender()
+    {
+        let snakeBody = this.objectToRender.body;
+        this.context.clearRect(
+            snakeBody.tail.x,
+            snakeBody.tail.y,
+            snakeBody.tail.width,
+            snakeBody.tail.height
+        );
     }
 }

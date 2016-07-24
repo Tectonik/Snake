@@ -17,5 +17,5 @@ const CONSTANTS = {
 
     FEED_SIZE: 10,
     FEED_DEFAULT_FILL_STYLE: fillStyles.fillAndStroke,
-    FEED_DEFAULT_TYPE: feedTypes.sphere
+    FEED_DEFAULT_TYPE: feedTypes.rectangle
 };

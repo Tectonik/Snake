@@ -181,11 +181,15 @@ class SnakeGameEngine extends GameEngine
             return function renderAllParameters()
             {
                 engine.increaseFrameCount();
-                playingField
-                    .context
-                    .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
+                // playingField
+                //     .context
+                //     .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
 
-                renderers.forEach(renderer => renderer.render());
+                renderers.forEach(renderer =>
+                {
+                    renderer.unrender();
+                    renderer.render();
+                });
 
                 window.requestAnimationFrame(renderAllParameters);
             };

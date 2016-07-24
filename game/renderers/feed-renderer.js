@@ -4,7 +4,7 @@ class FeedRenderer extends Renderer
     {
         super(objectToRender, context, fillStyle);
 
-        this._renderers[feedTypes.heart] = function (objectToRender, context)
+        this._renderers[feedTypes.rectangle] = function (objectToRender, context)
         {
             // Implementation required
             context.fillRect(
@@ -41,5 +41,15 @@ class FeedRenderer extends Renderer
         super.render();
 
         this.context.restore();
+    }
+
+    unrender()
+    {
+        this.context.clearRect(
+            this.objectToRender.x,
+            this.objectToRender.y,
+            this.objectToRender.x + this.objectToRender.width,
+            this.objectToRender.y + this.objectToRender.height
+        );
     }
 }

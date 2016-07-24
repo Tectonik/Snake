@@ -56,4 +56,9 @@ class Renderer
             this.context.stroke();
         }
     }
+
+    unrender()
+    {
+
+    }
 }

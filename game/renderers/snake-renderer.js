@@ -4,7 +4,7 @@ class SnakeRenderer extends Renderer
     {
         super(objectToRender, context, fillStyle);
 
-        this._renderers[segmentTypesEnum.sphere] = function (objectToRender, context)
+        this._renderers[segmentTypes.sphere] = function (objectToRender, context)
         {
             // Better implementation required
             let snakeSegments = objectToRender.segments;
@@ -22,7 +22,7 @@ class SnakeRenderer extends Renderer
                 });
         };
 
-        this._renderers[segmentTypesEnum.rectangle] = function (objectToRender, context)
+        this._renderers[segmentTypes.rectangle] = function (objectToRender, context)
         {
             // Better implementation required
             let snakeSegments = objectToRender.body;

@@ -1,4 +1,4 @@
-const directionsEnum =
+const directions =
     {
         none: 0,
         up: 1,

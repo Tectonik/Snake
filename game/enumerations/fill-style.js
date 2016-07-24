@@ -1,4 +1,4 @@
-const fillStyleEnum = {
+const fillStyles = {
     none: 0,
     fill: 1,
     stroke: 2,

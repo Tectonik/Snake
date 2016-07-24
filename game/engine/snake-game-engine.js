@@ -7,7 +7,7 @@ class SnakeGameEngine extends GameEngine
         this._playingField = playingField;
         this._snake = snake;
         this._feedCollection = feedCollection;
-        this._direction = directionsEnum.none;
+        this._direction = directions.none;
 
         document.onkeydown = this.reactToArrowKeys(this);
     }
@@ -66,21 +66,21 @@ class SnakeGameEngine extends GameEngine
     reactToArrowKeys(engine)
     {
         // Don't forget about the cool springy effect
-        let disabledDirection = directionsEnum.none;
+        let disabledDirection = directions.none;
 
         let directionKeys = {
-            37: directionsEnum.left,
-            38: directionsEnum.up,
-            39: directionsEnum.right,
-            40: directionsEnum.down
+            37: directions.left,
+            38: directions.up,
+            39: directions.right,
+            40: directions.down
         };
 
         // FIXME: Fuck.... What shite code!
         let oppositeDirection = {};
-        oppositeDirection[directionsEnum.right] = directionsEnum.left;
-        oppositeDirection[directionsEnum.down] = directionsEnum.up;
-        oppositeDirection[directionsEnum.left] = directionsEnum.right;
-        oppositeDirection[directionsEnum.up] = directionsEnum.down
+        oppositeDirection[directions.right] = directions.left;
+        oppositeDirection[directions.down] = directions.up;
+        oppositeDirection[directions.left] = directions.right;
+        oppositeDirection[directions.up] = directions.down
 
         return function (keypress)
         {
@@ -151,19 +151,24 @@ class SnakeGameEngine extends GameEngine
     _goThroughOtherSide(snake, gameField)
     {
         // TODO: Refactor
-        if (snake.y < gameField.y)
+        let snakeIsOutsideUpperBound = snake.y < gameField.y;
+        let snakeIsOutsideLeftBound = snake.x < gameField.x;
+        let snakeIsOutsideLowerBound = snake.y + snake.height > gameField.height;
+        let snakeIsOutsideRightBound = snake.x + snake.width > gameField.width;
+
+        if (snakeIsOutsideUpperBound)
         {
             snake.moveToCoordinates(snake.x, gameField.height - snake.height);
         }
-        else if (snake.x < gameField.x)
+        else if (snakeIsOutsideLeftBound)
         {
             snake.moveToCoordinates(gameField.width - snake.width, snake.y);
         }
-        else if (snake.y + snake.height > gameField.height)
+        else if (snakeIsOutsideLowerBound)
         {
             snake.moveToCoordinates(snake.x, 0);
         }
-        else if (snake.x + snake.width > gameField.width)
+        else if (snakeIsOutsideRightBound)
         {
             snake.moveToCoordinates(0, snake.y);
         }
@@ -190,7 +195,7 @@ class SnakeGameEngine extends GameEngine
             (engine) =>
             {
                 console.log(`Framerate: ${engine.frameCount}`);
-                engine.resetframeCount();
+                engine.resetFrameCount();
             },
             1000,
             [engine]);

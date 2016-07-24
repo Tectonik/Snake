@@ -112,7 +112,7 @@ class Snake extends GameObject
         {
             let newSegment = new LinkedSnakeSegment(this.body.head.x, this.body.head.y, this.height, this.width, this.body.type);
             this.body.addToTail(newSegment);
-            console.log('Feed caught, snake extended!');
+            console.log(`Feed caught, snake extended to ${this.body.length}`);
         }
 
         return feedHasBeenCaught;
@@ -122,11 +122,11 @@ class Snake extends GameObject
     {
         this.directionDeltas = {};
 
-        this.directionDeltas[directionsEnum.none] = { x: 0, y: 0 };
-        this.directionDeltas[directionsEnum.up] = { x: 0, y: -this.speed };
-        this.directionDeltas[directionsEnum.down] = { x: 0, y: this.speed };
-        this.directionDeltas[directionsEnum.left] = { x: -this.speed, y: 0 };
-        this.directionDeltas[directionsEnum.right] = { x: this.speed, y: 0 };
+        this.directionDeltas[directions.none] = { x: 0, y: 0 };
+        this.directionDeltas[directions.up] = { x: 0, y: -this.speed };
+        this.directionDeltas[directions.down] = { x: 0, y: this.speed };
+        this.directionDeltas[directions.left] = { x: -this.speed, y: 0 };
+        this.directionDeltas[directions.right] = { x: this.speed, y: 0 };
 
         return this.directionDeltas[direction];
     }

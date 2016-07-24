@@ -4,7 +4,7 @@ class FeedRenderer extends Renderer
     {
         super(objectToRender, context, fillStyle);
 
-        this._renderers[feedTypesEnum.heart] = function (objectToRender, context)
+        this._renderers[feedTypes.heart] = function (objectToRender, context)
         {
             // Implementation required
             context.fillRect(
@@ -15,7 +15,7 @@ class FeedRenderer extends Renderer
             );
         };
 
-        this._renderers[feedTypesEnum.sphere] = function (objectToRender, context)
+        this._renderers[feedTypes.sphere] = function (objectToRender, context)
         {
             context.arc(
                 objectToRender.x + objectToRender.width,

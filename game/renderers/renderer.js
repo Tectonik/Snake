@@ -42,16 +42,16 @@ class Renderer
     render()
     {
 
-        if (this.fillStyle === fillStyleEnum.fillAndStroke)
+        if (this.fillStyle === fillStyles.fillAndStroke)
         {
             this.context.fill();
             this.context.stroke();
         }
-        else if (this.fillStyle === fillStyleEnum.fill)
+        else if (this.fillStyle === fillStyles.fill)
         {
             this.context.fill();
         }
-        else if (this.fillStyle === fillStyleEnum.stroke)
+        else if (this.fillStyle === fillStyles.stroke)
         {
             this.context.stroke();
         }

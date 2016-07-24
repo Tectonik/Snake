@@ -12,10 +12,10 @@ const CONSTANTS = {
     SNAKE_SIZE: 20,
     // TODO: Refactor
     SNAKE_SPEED: 21,
-    SNAKE_DEFAULT_FILL_STYLE: fillStyleEnum.fill,
-    SNAKE_DEFAULT_SEGMENT_TYPE: segmentTypesEnum.rectangle,
+    SNAKE_DEFAULT_FILL_STYLE: fillStyles.fill,
+    SNAKE_DEFAULT_SEGMENT_TYPE: segmentTypes.rectangle,
 
     FEED_SIZE: 10,
-    FEED_DEFAULT_FILL_STYLE: fillStyleEnum.fillAndStroke,
-    FEED_DEFAULT_TYPE: feedTypesEnum.sphere
+    FEED_DEFAULT_FILL_STYLE: fillStyles.fillAndStroke,
+    FEED_DEFAULT_TYPE: feedTypes.sphere
 };

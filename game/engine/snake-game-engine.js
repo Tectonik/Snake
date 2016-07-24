@@ -37,7 +37,7 @@ class SnakeGameEngine extends GameEngine
         return this._feedCollection;
     }
 
-    resetframeCount()
+    resetFrameCount()
     {
         this.frameCount = 0;
     }
@@ -192,7 +192,7 @@ class SnakeGameEngine extends GameEngine
         }
 
         setInterval(
-            (engine) =>
+            ([engine]) =>
             {
                 console.log(`Framerate: ${engine.frameCount}`);
                 engine.resetFrameCount();

@@ -8,10 +8,10 @@ const CONSTANTS = {
 
     SNAKE_STARTING_X: 350,
     SNAKE_STARTING_Y: 200,
-    SNAKE_STARTING_LENGTH: 10,
+    SNAKE_STARTING_LENGTH: 2,
     SNAKE_SIZE: 20,
     // TODO: Refactor
-    SNAKE_SPEED: 21,
+    SNAKE_SPEED: 20,
     SNAKE_DEFAULT_FILL_STYLE: fillStyles.fill,
     SNAKE_DEFAULT_SEGMENT_TYPE: segmentTypes.rectangle,
 

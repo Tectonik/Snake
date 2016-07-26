@@ -31,6 +31,15 @@ class FeedRenderer extends Renderer
     // TODO: Refactor
     render()
     {
+        // this.context.fillStyle = 'rgb(230, 182, 44)';
+
+        // this.context.fillRect(
+        //     this.objectToRender.x,
+        //     this.objectToRender.y,
+        //     this.objectToRender.width,
+        //     this.objectToRender.height
+        // );
+
         this.context.save();
 
         // Heavy coupling
@@ -45,11 +54,11 @@ class FeedRenderer extends Renderer
 
     unrender()
     {
-        this.context.clearRect(
-            this.objectToRender.x,
-            this.objectToRender.y,
-            this.objectToRender.x + this.objectToRender.width,
-            this.objectToRender.y + this.objectToRender.height
-        );
+        // this.context.clearRect(
+        //     this.objectToRender.x,
+        //     this.objectToRender.y,
+        //     this.objectToRender.width,
+        //     this.objectToRender.height
+        // );
     }
 }

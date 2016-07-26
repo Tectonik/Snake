@@ -24,5 +24,20 @@ let helpers =
 
             let randomCoordinates = { x, y };
             return randomCoordinates;
+        },
+
+        randomizeCoordinates: (objectToRandomizeCoordinatesOf, bounds) =>
+        {
+            let newCoordinates = helpers.getRandomCoordinates(
+                {
+                    upperBound: bounds.y,
+                    leftBound: bounds.x,
+                    downBound: bounds.height - objectToRandomizeCoordinatesOf.height,
+                    rightBound: bounds.width - objectToRandomizeCoordinatesOf.width
+                }
+            );
+
+            objectToRandomizeCoordinatesOf.y = newCoordinates.y;
+            objectToRandomizeCoordinatesOf.x = newCoordinates.x;
         }
     };

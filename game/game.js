@@ -49,7 +49,7 @@ class Game
             this._playingField,
             snake,
             [feed],
-            [snakeRenderer, feedRenderer],
+            [feedRenderer, snakeRenderer],
             this._playingField.gameContext
         );
     }

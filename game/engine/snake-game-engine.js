@@ -120,17 +120,7 @@ class SnakeGameEngine extends GameEngine
                     .forEach(
                     (feed) =>
                     {
-                        let newCoordinates = helpers.getRandomCoordinates(
-                            {
-                                upperBound: playingField.y,
-                                leftBound: playingField.x,
-                                downBound: playingField.height - feed.height,
-                                rightBound: playingField.width - feed.width
-                            }
-                        );
-
-                        feed.y = newCoordinates.y;
-                        feed.x = newCoordinates.x;
+                        helpers.randomizeCoordinates(feed, playingField);
                     });
 
                 if (playingField.objectIsWithinBounds(snake) === false)
@@ -181,9 +171,10 @@ class SnakeGameEngine extends GameEngine
             return function renderAllParameters()
             {
                 engine.increaseFrameCount();
-                // playingField
-                //     .context
-                //     .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
+
+                playingField
+                    .context
+                    .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
 
                 renderers.forEach(renderer =>
                 {

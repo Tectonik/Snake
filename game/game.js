@@ -9,7 +9,6 @@ class Game
             CONSTANTS.SNAKE_STARTING_X,
             CONSTANTS.SNAKE_STARTING_Y,
             CONSTANTS.SNAKE_STARTING_LENGTH,
-            CONSTANTS.SNAKE_SPEED,
             CONSTANTS.SNAKE_SIZE,
             CONSTANTS.SNAKE_SIZE,
             CONSTANTS.SNAKE_DEFAULT_SEGMENT_TYPE
@@ -48,6 +47,7 @@ class Game
         this._engine = new SnakeGameEngine(
             this._playingField,
             snake,
+            CONSTANTS.SNAKE_SPEED,
             [feed],
             [feedRenderer, snakeRenderer],
             this._playingField.gameContext

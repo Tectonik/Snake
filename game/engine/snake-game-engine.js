@@ -1,15 +1,26 @@
 class SnakeGameEngine extends GameEngine
 {
-    constructor(playingField, snake, feedCollection, renderers, renderingContext)
+    constructor(playingField, snake, snakeSpeed = CONSTANTS.SNAKE_SPEED, feedCollection, renderers, renderingContext)
     {
         super(renderingContext, renderers);
 
+        this._snakeSpeed = snakeSpeed;
         this._playingField = playingField;
         this._snake = snake;
         this._feedCollection = feedCollection;
         this._direction = directions.none;
 
-        document.onkeydown = this.reactToArrowKeys(this);
+        document.onkeydown = this.startListeningForKeypresses(this);
+    }
+
+    get snakeSpeed()
+    {
+        return this._snakeSpeed;
+    }
+
+    set snakeSpeed(value)
+    {
+        this._snakeSpeed = value;
     }
 
     get direction()
@@ -60,10 +71,10 @@ class SnakeGameEngine extends GameEngine
     start()
     {
         this._startGameLogic();
-        this._startRendering(this.renderers, this.playingField, this);
+        this._startRendering(this.renderers, this.playingField, this, this.snake);
     }
 
-    reactToArrowKeys(engine)
+    startListeningForKeypresses(engine)
     {
         // Don't forget about the cool springy effect
         let disabledDirection = directions.none;
@@ -113,7 +124,7 @@ class SnakeGameEngine extends GameEngine
             // Example of array deconstruction
             ([snake, engine, feedCollection, playingField, goThroughOtherSide]) =>
             {
-                snake.move(engine.direction);
+                snake.changeDirection(engine.direction);
 
                 feedCollection
                     .filter((feed) => snake.caughtFeed(feed))
@@ -141,10 +152,10 @@ class SnakeGameEngine extends GameEngine
     _goThroughOtherSide(snake, gameField)
     {
         // TODO: Refactor
-        let snakeIsOutsideUpperBound = snake.y < gameField.y;
-        let snakeIsOutsideLeftBound = snake.x < gameField.x;
-        let snakeIsOutsideLowerBound = snake.y + snake.height > gameField.height;
-        let snakeIsOutsideRightBound = snake.x + snake.width > gameField.width;
+        let snakeIsOutsideUpperBound = (snake.y < gameField.y);
+        let snakeIsOutsideLeftBound = (snake.x < gameField.x);
+        let snakeIsOutsideLowerBound = (snake.y + snake.height > gameField.height);
+        let snakeIsOutsideRightBound = (snake.x + snake.width > gameField.width);
 
         if (snakeIsOutsideUpperBound)
         {
@@ -164,26 +175,25 @@ class SnakeGameEngine extends GameEngine
         }
     }
 
-    _startRendering(renderers, playingField, engine)
+    _startRendering(renderers, playingField, engine, snake)
     {
-        function createRenderEverythingFunction(renderers, playingField, engine)
+        // TODO: Rename, move to constants
+        let amplifier = 6;
+        function renderAllParameters([renderers, playingField, engine, snake])
         {
-            return function renderAllParameters()
+            engine.increaseFrameCount();
+
+            playingField
+                .context
+                .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
+
+            renderers.forEach(renderer =>
             {
-                engine.increaseFrameCount();
+                renderer.unrender();
+                renderer.render();
+            });
 
-                playingField
-                    .context
-                    .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
-
-                renderers.forEach(renderer =>
-                {
-                    renderer.unrender();
-                    renderer.render();
-                });
-
-                window.requestAnimationFrame(renderAllParameters);
-            };
+            snake.move(CONSTANTS.SNAKE_SPEED / amplifier);
         }
 
         setInterval(
@@ -195,12 +205,15 @@ class SnakeGameEngine extends GameEngine
             1000,
             [engine]);
 
-        window.requestAnimationFrame(
-            createRenderEverythingFunction(
+        window.setInterval(
+            renderAllParameters,
+            CONSTANTS.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS / amplifier,
+            [
                 renderers,
                 playingField,
-                engine
-            )
+                engine,
+                snake
+            ]
         );
     }
 }

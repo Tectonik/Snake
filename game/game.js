@@ -41,8 +41,23 @@ class Game
             CONSTANTS.FIELD_WIDTH
         );
 
-        let snakeRenderer = new SnakeRenderer(snake, this.playingField.context, CONSTANTS.SNAKE_DEFAULT_FILL_STYLE);
-        let feedRenderer = new FeedRenderer(feed, this.playingField.context, CONSTANTS.FEED_DEFAULT_FILL_STYLE);
+        let snakeRenderer = new SnakeRenderer(
+            snake,
+            this.playingField.context,
+            {
+                fill: CONSTANTS.SNAKE_DEFAULT_FILL_COLOUR,
+                stroke: CONSTANTS.SNAKE_DEFAULT_STROKE_COLOUR,
+                type: CONSTANTS.SNAKE_DEFAULT_FILL_STYLE
+            });
+
+        let feedRenderer = new FeedRenderer(
+            feed,
+            this.playingField.context,
+            {
+                fill: CONSTANTS.FEED_DEFAULT_FILL_COLOUR,
+                stroke: CONSTANTS.FEED_DEFAULT_STROKE_COLOUR,
+                type: CONSTANTS.FEED_DEFAULT_FILL_STYLE
+            });
 
         this._engine = new SnakeGameEngine(
             this._playingField,

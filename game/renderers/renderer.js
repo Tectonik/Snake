@@ -1,21 +1,21 @@
 class Renderer
 {
-    constructor(objectToRender, context, fillStyle = fillStyleEnum.fill)
+    constructor(objectToRender, context, style)
     {
         this._objectToRender = objectToRender;
         this._context = context;
+        this._style = style;
         this._renderers = {};
-        this._fillStyle = fillStyle;
     }
 
-    get fillStyle()
+    get style()
     {
-        return this._fillStyle;
+        return this._style;
     }
 
-    set fillStyle(value)
+    set style(value)
     {
-        this._fillStyle = value;
+        this._style = value;
     }
 
     get renderers()
@@ -41,18 +41,15 @@ class Renderer
     // TODO: Refactor
     render()
     {
+        if (this.style.type === fillStyles.fill || this.style.type === fillStyles.fillAndStroke)
+        {
+            this.context.fillStyle = this.style.fill;
+            this.context.fill();
+        }
 
-        if (this.fillStyle === fillStyles.fillAndStroke)
+        if (this.style.type === fillStyles.stroke || this.style.type === fillStyles.fillAndStroke)
         {
-            this.context.fill();
-            this.context.stroke();
-        }
-        else if (this.fillStyle === fillStyles.fill)
-        {
-            this.context.fill();
-        }
-        else if (this.fillStyle === fillStyles.stroke)
-        {
+            this.context.strokeStyle = this.style.stroke;
             this.context.stroke();
         }
     }

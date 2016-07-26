@@ -77,25 +77,25 @@ class Snake extends GameObject
         this._speed = +value;
     }
 
-    // get _allSegmentXCoordinates()
-    // {
+    get allSegmentXCoordinates()
+    {
+        return this._allSegmentXCoordinates;
+    }
 
-    // }
+    set allSegmentXCoordinates(value)
+    {
+        this._allSegmentXCoordinates = value;
+    }
 
-    // set _allSegmentXCoordinates(value)
-    // {
+    get allSegmentYCoordinates()
+    {
+        return this._allSegmentYCoordinates
+    }
 
-    // }
-
-    // get _allSegmentYCoordinates()
-    // {
-
-    // }
-
-    // set _allSegmentYCoordinates(value)
-    // {
-
-    // }
+    set allSegmentYCoordinates(value)
+    {
+        this._allSegmentYCoordinates = value;
+    }
 
     moveToCoordinates(x, y)
     {
@@ -117,6 +117,14 @@ class Snake extends GameObject
         {
             console.log(`${this.direction} -> X:${nextCoordinates.x}, Y:${nextCoordinates.y}, Speed:${speed}`);
         }
+
+        // console.log(lastMovedSegment);
+
+        this.allSegmentXCoordinates.delete(lastMovedSegment.x);
+        this.allSegmentYCoordinates.delete(lastMovedSegment.y);
+
+        this.allSegmentXCoordinates.add(this.body.head.x);
+        this.allSegmentYCoordinates.add(this.body.head.y);
 
         lastMovedSegment.y = (this.body.head.y + nextCoordinates.y);
         lastMovedSegment.x = (this.body.head.x + nextCoordinates.x);

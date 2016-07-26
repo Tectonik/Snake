@@ -1,13 +1,13 @@
 class FeedRenderer extends Renderer
 {
-    constructor(objectToRender, context, fillStyle)
+    constructor(objectToRender, context, style)
     {
-        super(objectToRender, context, fillStyle);
+        super(objectToRender, context, style);
 
         this._renderers[feedTypes.rectangle] = function (objectToRender, context)
         {
             // Implementation required
-            context.fillRect(
+            context.rect(
                 objectToRender.x,
                 objectToRender.y,
                 objectToRender.width,
@@ -43,8 +43,6 @@ class FeedRenderer extends Renderer
         this.context.save();
 
         // Heavy coupling
-        this.context.fillStyle = 'rgb(230, 182, 44)';
-
         this.context.beginPath();
         this.renderers[this.objectToRender.type](this.objectToRender, this.context);
         super.render();

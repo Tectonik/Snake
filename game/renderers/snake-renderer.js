@@ -1,8 +1,8 @@
 class SnakeRenderer extends Renderer
 {
-    constructor(objectToRender, context, fillStyle)
+    constructor(objectToRender, context, style)
     {
-        super(objectToRender, context, fillStyle);
+        super(objectToRender, context, style);
 
         this._renderers[segmentTypes.sphere] = function (objectToRender, context)
         {
@@ -54,8 +54,6 @@ class SnakeRenderer extends Renderer
         this.context.save();
 
         // Heavy coupling
-        this.context.fillStyle = 'rgb(0, 128, 0)';
-
         this.context.beginPath();
         this.renderers[this.objectToRender.body.type](this.objectToRender, this.context);
         super.render();

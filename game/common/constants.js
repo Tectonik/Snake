@@ -11,12 +11,17 @@ const CONSTANTS = {
     SNAKE_STARTING_Y: 200,
     SNAKE_STARTING_LENGTH: 5,
     SNAKE_SIZE: 20,
+    SNAKE_DEFAULT_FILL_COLOUR: 'green',
+    SNAKE_DEFAULT_STROKE_COLOUR: 'white',
+
     // TODO: Refactor
     SNAKE_SPEED: 20,
-    SNAKE_DEFAULT_FILL_STYLE: fillStyles.fill,
+    SNAKE_DEFAULT_FILL_STYLE: fillStyles.fillAndStroke,
     SNAKE_DEFAULT_SEGMENT_TYPE: segmentTypes.rectangle,
 
     FEED_SIZE: 10,
     FEED_DEFAULT_FILL_STYLE: fillStyles.fillAndStroke,
-    FEED_DEFAULT_TYPE: feedTypes.rectangle
+    FEED_DEFAULT_TYPE: feedTypes.rectangle,
+    FEED_DEFAULT_FILL_COLOUR: 'red',
+    FEED_DEFAULT_STROKE_COLOUR: 'white'
 };

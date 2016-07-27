@@ -34,7 +34,7 @@ class SnakeRenderer extends Renderer
                         segment.y,
                         segment.width,
                         segment.height
-                    )
+                    );
                 }
             );
         };

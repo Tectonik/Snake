@@ -83,7 +83,7 @@ class SnakeBodyDequeue
         const leftmostElement = this.head;
         const rightToLeftmostElement = this.head.rightNeighbour;
 
-        this.head = rightToLeftmostElement
+        this.head = rightToLeftmostElement;
         this.head.leftNeighbour = null;
 
         --this.length;

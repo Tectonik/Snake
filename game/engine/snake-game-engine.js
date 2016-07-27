@@ -1,6 +1,6 @@
 class SnakeGameEngine extends GameEngine
 {
-    constructor(playingField, snake, snakeSpeed = constants.SNAKE_SPEED, feedCollection, renderers, renderingContext)
+    constructor(playingField, snake, snakeSpeed, feedCollection, renderers, renderingContext)
     {
         super(renderingContext, renderers);
 
@@ -92,7 +92,7 @@ class SnakeGameEngine extends GameEngine
         oppositeDirection[directions.right] = directions.left;
         oppositeDirection[directions.down] = directions.up;
         oppositeDirection[directions.left] = directions.right;
-        oppositeDirection[directions.up] = directions.down
+        oppositeDirection[directions.up] = directions.down;
 
         return function (keypress)
         {
@@ -102,7 +102,7 @@ class SnakeGameEngine extends GameEngine
                 const currentDirection = engine.direction;
                 if (currentDirection !== oppositeDirection[currentKey])
                 {
-                    engine.changeDirection(currentKey)
+                    engine.changeDirection(currentKey);
                 }
             }
         };

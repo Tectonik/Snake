@@ -89,7 +89,7 @@ class Snake extends GameObject
 
     get allSegmentYCoordinates()
     {
-        return this._allSegmentYCoordinates
+        return this._allSegmentYCoordinates;
     }
 
     set allSegmentYCoordinates(value)

@@ -1,4 +1,4 @@
-const helpers =
+const helpers = Object.freeze(
     {
         getRandomInRange: (min, max) =>
         {
@@ -40,4 +40,4 @@ const helpers =
             objectToRandomizeCoordinatesOf.y = newCoordinates.y;
             objectToRandomizeCoordinatesOf.x = newCoordinates.x;
         }
-    };
+    });

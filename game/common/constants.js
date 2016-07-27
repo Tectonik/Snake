@@ -1,4 +1,4 @@
-const CONSTANTS = {
+const constants = {
     GAME_IS_IN_DEBUG_MODE: false,
     GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS: 100,
 
@@ -12,7 +12,7 @@ const CONSTANTS = {
     SNAKE_STARTING_LENGTH: 5,
     SNAKE_SIZE: 20,
     SNAKE_DEFAULT_FILL_COLOUR: 'green',
-    SNAKE_DEFAULT_STROKE_COLOUR: 'white',
+    SNAKE_DEFAULT_STROKE_COLOUR: 'greenyellow',
 
     // TODO: Refactor
     SNAKE_SPEED: 20,

@@ -1,6 +1,6 @@
 class Feed extends GameObject
 {
-    constructor(startX, startY, height, width, type = CONSTANTS.FEED_DEFAULT_TYPE)
+    constructor(startX, startY, height, width, type = constants.FEED_DEFAULT_TYPE)
     {
         super(startX, startY, height, width);
 

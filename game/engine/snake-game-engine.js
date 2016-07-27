@@ -1,12 +1,13 @@
 class SnakeGameEngine extends GameEngine
 {
-    constructor(playingField, snake, snakeSpeed = CONSTANTS.SNAKE_SPEED, feedCollection, renderers, renderingContext)
+    constructor(playingField, snake, snakeSpeed = constants.SNAKE_SPEED, feedCollection, renderers, renderingContext)
     {
         super(renderingContext, renderers);
 
         this._snakeSpeed = snakeSpeed;
         this._playingField = playingField;
         this._snake = snake;
+        // NOT a violation of YAGNI
         this._feedCollection = feedCollection;
         this._direction = directions.none;
 
@@ -70,7 +71,7 @@ class SnakeGameEngine extends GameEngine
 
     start()
     {
-        this._startGameLogic();
+        this._startGameLogic(this.snake, this, this.feedCollection, this.playingField, this._goThroughOtherSide);
         this._startRendering(this.renderers, this.playingField, this, this.snake);
     }
 
@@ -109,8 +110,8 @@ class SnakeGameEngine extends GameEngine
 
     gameLost(engine)
     {
-        this.pause();
-        console.log('Game lost, bounds reached');
+        engine.pause();
+        console.log('Game lost, cannibalism detected');
     }
 
     gameWon()
@@ -118,11 +119,12 @@ class SnakeGameEngine extends GameEngine
         console.log('You are whiner! Ies!');
     }
 
-    _startGameLogic()
+    // TODO: Refactor, parameterize
+    _startGameLogic(snake, engine, feedCollection, playingField, goThroughOtherSideCallback)
     {
         this._gameStepIntervalId = setInterval(
             // Example of array deconstruction
-            ([snake, engine, feedCollection, playingField, goThroughOtherSide]) =>
+            ([snake, engine, feedCollection, playingField, goThroughOtherSideCallback]) =>
             {
                 snake.changeDirection(engine.direction);
 
@@ -136,7 +138,7 @@ class SnakeGameEngine extends GameEngine
 
                 if (playingField.objectIsWithinBounds(snake) === false)
                 {
-                    goThroughOtherSide(snake, playingField);
+                    goThroughOtherSideCallback(snake, playingField);
                 }
 
                 if (snake.hasBittenItsTail())
@@ -144,8 +146,8 @@ class SnakeGameEngine extends GameEngine
                     engine.gameLost();
                 }
             },
-            CONSTANTS.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS,
-            [this.snake, this, this.feedCollection, this.playingField, this._goThroughOtherSide]
+            constants.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS,
+            [snake, engine, feedCollection, playingField, goThroughOtherSideCallback]
         );
     }
 
@@ -185,18 +187,19 @@ class SnakeGameEngine extends GameEngine
 
             playingField
                 .context
-                .clearRect(CONSTANTS.FIELD_LEFT, CONSTANTS.FIELD_TOP, CONSTANTS.FIELD_WIDTH, CONSTANTS.FIELD_HEIGHT);
+                .clearRect(constants.FIELD_LEFT, constants.FIELD_TOP, constants.FIELD_WIDTH, constants.FIELD_HEIGHT);
 
-            renderers.forEach(renderer =>
-            {
-                renderer.unrender();
-                renderer.render();
-            });
+            renderers.forEach(
+                (renderer) =>
+                {
+                    renderer.unrender();
+                    renderer.render();
+                });
 
-            snake.move(CONSTANTS.SNAKE_SPEED / amplifier);
+            snake.move(constants.SNAKE_SPEED / amplifier);
         }
 
-        setInterval(
+        window.setInterval(
             ([engine]) =>
             {
                 console.log(`Framerate: ${engine.frameCount}`);
@@ -207,13 +210,12 @@ class SnakeGameEngine extends GameEngine
 
         window.setInterval(
             renderAllParameters,
-            CONSTANTS.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS / amplifier,
+            constants.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS / amplifier,
             [
                 renderers,
                 playingField,
                 engine,
                 snake
-            ]
-        );
+            ]);
     }
 }

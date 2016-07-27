@@ -78,9 +78,9 @@ class SnakeGameEngine extends GameEngine
     startListeningForKeypresses(engine)
     {
         // Don't forget about the cool springy effect
-        let disabledDirection = directions.none;
+        // let disabledDirection = directions.none;
 
-        let directionKeys = {
+        letdirectionKeys = {
             37: directions.left,
             38: directions.up,
             39: directions.right,
@@ -88,7 +88,7 @@ class SnakeGameEngine extends GameEngine
         };
 
         // FIXME: Fuck.... What shite code!
-        let oppositeDirection = {};
+        letoppositeDirection = {};
         oppositeDirection[directions.right] = directions.left;
         oppositeDirection[directions.down] = directions.up;
         oppositeDirection[directions.left] = directions.right;
@@ -98,8 +98,8 @@ class SnakeGameEngine extends GameEngine
         {
             if (keypress && directionKeys.hasOwnProperty(+keypress.keyCode))
             {
-                let currentKey = directionKeys[+keypress.keyCode];
-                let currentDirection = engine.direction;
+                letcurrentKey = directionKeys[+keypress.keyCode];
+                letcurrentDirection = engine.direction;
                 if (currentDirection !== oppositeDirection[currentKey])
                 {
                     engine.changeDirection(currentKey)
@@ -154,10 +154,10 @@ class SnakeGameEngine extends GameEngine
     _goThroughOtherSide(snake, gameField)
     {
         // TODO: Refactor
-        let snakeIsOutsideUpperBound = (snake.y < gameField.y);
-        let snakeIsOutsideLeftBound = (snake.x < gameField.x);
-        let snakeIsOutsideLowerBound = (snake.y + snake.height > gameField.height);
-        let snakeIsOutsideRightBound = (snake.x + snake.width > gameField.width);
+        letsnakeIsOutsideUpperBound = (snake.y < gameField.y);
+        letsnakeIsOutsideLeftBound = (snake.x < gameField.x);
+        letsnakeIsOutsideLowerBound = (snake.y + snake.height > gameField.height);
+        letsnakeIsOutsideRightBound = (snake.x + snake.width > gameField.width);
 
         if (snakeIsOutsideUpperBound)
         {
@@ -180,7 +180,7 @@ class SnakeGameEngine extends GameEngine
     _startRendering(renderers, playingField, engine, snake)
     {
         // TODO: Rename, move to constants
-        let amplifier = 6;
+        letamplifier = 6;
         function renderAllParameters([renderers, playingField, engine, snake])
         {
             engine.increaseFrameCount();

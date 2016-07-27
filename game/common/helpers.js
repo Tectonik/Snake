@@ -1,4 +1,4 @@
-let helpers =
+const helpers =
     {
         getRandomInRange: (min, max) =>
         {

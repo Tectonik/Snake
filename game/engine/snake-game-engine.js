@@ -7,7 +7,7 @@ class SnakeGameEngine extends GameEngine
         this._snakeSpeed = snakeSpeed;
         this._playingField = playingField;
         this._snake = snake;
-        // NOT a violation of YAGNI
+        // NOT a violation of YAGNI... I think
         this._feedCollection = feedCollection;
         this._direction = directions.none;
 

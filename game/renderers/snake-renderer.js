@@ -7,7 +7,7 @@ class SnakeRenderer extends Renderer
         this._renderers[segmentTypes.sphere] = function (objectToRender, context)
         {
             // Better implementation required
-            let snakeSegments = objectToRender.segments;
+            const snakeSegments = objectToRender.segments;
             snakeSegments.forEach(
                 (segment) =>
                 {
@@ -25,7 +25,7 @@ class SnakeRenderer extends Renderer
         this._renderers[segmentTypes.rectangle] = function (snake, context)
         {
             // Better implementation required
-            let snakeSegments = snake.body;
+            const snakeSegments = snake.body;
             snakeSegments.forEach(
                 (segment) =>
                 {

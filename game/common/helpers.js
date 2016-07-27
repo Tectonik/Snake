@@ -2,13 +2,13 @@ const helpers =
     {
         getRandomInRange: (min, max) =>
         {
-            let random = Math.random() * (max - min) + min;
+            const random = Math.random() * (max - min) + min;
             return random;
         },
 
         objectsAreColliding: (firstObject, secondObject) =>
         {
-            let objectsAreColliding =
+            const objectsAreColliding =
                 firstObject.x >= secondObject.x - secondObject.width &&
                 firstObject.x <= secondObject.x + secondObject.width &&
                 firstObject.y >= secondObject.y - secondObject.width &&
@@ -22,13 +22,13 @@ const helpers =
             this.x = helpers.getRandomInRange(limits.leftBound, limits.rightBound);
             this.y = helpers.getRandomInRange(limits.upperBound, limits.downBound);
 
-            let randomCoordinates = { x, y };
+            const randomCoordinates = { x, y };
             return randomCoordinates;
         },
 
         randomizeCoordinates: (objectToRandomizeCoordinatesOf, bounds) =>
         {
-            let newCoordinates = helpers.getRandomCoordinates(
+            const newCoordinates = helpers.getRandomCoordinates(
                 {
                     upperBound: bounds.y,
                     leftBound: bounds.x,

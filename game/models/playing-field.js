@@ -19,7 +19,7 @@ class PlayingField extends GameObject
 
     objectIsWithinBounds(object)
     {
-        let objectIsWithinFieldBounds =
+        const objectIsWithinFieldBounds =
             object.y >= this.y &&
             object.x >= this.x &&
             object.y + object.height <= this.height &&

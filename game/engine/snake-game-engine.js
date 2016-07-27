@@ -80,7 +80,7 @@ class SnakeGameEngine extends GameEngine
         // Don't forget about the cool springy effect
         // let disabledDirection = directions.none;
 
-        letdirectionKeys = {
+        const directionKeys = {
             37: directions.left,
             38: directions.up,
             39: directions.right,
@@ -88,7 +88,7 @@ class SnakeGameEngine extends GameEngine
         };
 
         // FIXME: Fuck.... What shite code!
-        letoppositeDirection = {};
+        const oppositeDirection = {};
         oppositeDirection[directions.right] = directions.left;
         oppositeDirection[directions.down] = directions.up;
         oppositeDirection[directions.left] = directions.right;
@@ -98,8 +98,8 @@ class SnakeGameEngine extends GameEngine
         {
             if (keypress && directionKeys.hasOwnProperty(+keypress.keyCode))
             {
-                letcurrentKey = directionKeys[+keypress.keyCode];
-                letcurrentDirection = engine.direction;
+                const currentKey = directionKeys[+keypress.keyCode];
+                const currentDirection = engine.direction;
                 if (currentDirection !== oppositeDirection[currentKey])
                 {
                     engine.changeDirection(currentKey)
@@ -154,10 +154,10 @@ class SnakeGameEngine extends GameEngine
     _goThroughOtherSide(snake, gameField)
     {
         // TODO: Refactor
-        letsnakeIsOutsideUpperBound = (snake.y < gameField.y);
-        letsnakeIsOutsideLeftBound = (snake.x < gameField.x);
-        letsnakeIsOutsideLowerBound = (snake.y + snake.height > gameField.height);
-        letsnakeIsOutsideRightBound = (snake.x + snake.width > gameField.width);
+        const snakeIsOutsideUpperBound = (snake.y < gameField.y);
+        const snakeIsOutsideLeftBound = (snake.x < gameField.x);
+        const snakeIsOutsideLowerBound = (snake.y + snake.height > gameField.height);
+        const snakeIsOutsideRightBound = (snake.x + snake.width > gameField.width);
 
         if (snakeIsOutsideUpperBound)
         {
@@ -180,7 +180,7 @@ class SnakeGameEngine extends GameEngine
     _startRendering(renderers, playingField, engine, snake)
     {
         // TODO: Rename, move to constants
-        letamplifier = 6;
+        const amplifier = 6;
         function renderAllParameters([renderers, playingField, engine, snake])
         {
             engine.increaseFrameCount();

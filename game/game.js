@@ -5,7 +5,7 @@ class Game
     // Gargantuan constructor, needs beasts
     constructor()
     {
-        let snake = new Snake(
+        const snake = new Snake(
             constants.SNAKE_STARTING_X,
             constants.SNAKE_STARTING_Y,
             constants.SNAKE_STARTING_LENGTH,
@@ -15,7 +15,7 @@ class Game
         );
 
         // TODO: Fix major issue
-        let feedStartingCoordinates = helpers.getRandomCoordinates(
+        const feedStartingCoordinates = helpers.getRandomCoordinates(
             {
                 upperBound: constants.FIELD_TOP,
                 leftBound: constants.FIELD_LEFT,
@@ -25,7 +25,7 @@ class Game
         );
 
         // TODO: Refactor x and y
-        let feed = new Feed(
+        const feed = new Feed(
             feedStartingCoordinates.x,
             feedStartingCoordinates.y,
             constants.FEED_SIZE,
@@ -33,7 +33,7 @@ class Game
             constants.FEED_DEFAULT_TYPE
         );
 
-        let canvas = document.getElementsByClassName('playing-field')[0];
+        const canvas = document.getElementsByClassName('playing-field')[0];
 
         this._playingField = new PlayingField(
             canvas,
@@ -41,7 +41,7 @@ class Game
             constants.FIELD_WIDTH
         );
 
-        let snakeRenderer = new SnakeRenderer(
+        const snakeRenderer = new SnakeRenderer(
             snake,
             this.playingField.context,
             {
@@ -50,7 +50,7 @@ class Game
                 type: constants.SNAKE_DEFAULT_FILL_STYLE
             });
 
-        let feedRenderer = new FeedRenderer(
+        const feedRenderer = new FeedRenderer(
             feed,
             this.playingField.context,
             {

@@ -67,8 +67,8 @@ class SnakeBodyDequeue
 
     popRightmostElement()
     {
-        let rightmostElement = this.tail;
-        let leftToRightmostElement = this.tail.leftNeighbour;
+        const rightmostElement = this.tail;
+        const leftToRightmostElement = this.tail.leftNeighbour;
 
         this.tail = leftToRightmostElement;
         this.tail.rightNeighbour = null;
@@ -80,8 +80,8 @@ class SnakeBodyDequeue
 
     popLeftmostElement()
     {
-        let leftmostElement = this.head;
-        let rightToLeftmostElement = this.head.rightNeighbour;
+        const leftmostElement = this.head;
+        const rightToLeftmostElement = this.head.rightNeighbour;
 
         this.head = rightToLeftmostElement
         this.head.leftNeighbour = null;
@@ -104,10 +104,10 @@ class SnakeBodyDequeue
     mapToArray(callback)
     {
         let currentSegment = this.head;
-        let result = [];
+        const result = [];
         while (currentSegment)
         {
-            let currentResult = callback(currentSegment);
+            const currentResult = callback(currentSegment);
             currentSegment = currentSegment.rightNeighbour;
 
             result.push(currentResult);

@@ -1,11 +1,14 @@
 {
-    "name": "snake",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "live-server"
-    },
-    "author": "Nerobota",
-    "license": "ISC"
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "live-server"
+  },
+  "author": "Nerobota",
+  "license": "ISC",
+  "dependencies": {
+    "live-server": "^1.0.0"
+  }
 }

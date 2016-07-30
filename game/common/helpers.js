@@ -6,13 +6,26 @@ const helpers = Object.freeze(
             return random;
         },
 
-        objectsAreColliding: (firstObject, secondObject) =>
+        // I have no idea what this does or how it works *facepalm*
+        // objectsAreColliding: (firstObject, secondObject) =>
+        // {
+        //     const objectsAreColliding =
+        //         firstObject.x >= secondObject.x - secondObject.width &&
+        //         firstObject.x <= secondObject.x + secondObject.width &&
+        //         firstObject.y >= secondObject.y - secondObject.width &&
+        //         firstObject.y <= secondObject.y + secondObject.width;
+
+        //     return objectsAreColliding;
+        // },
+
+        // Example of Object deconstruction
+        objectsAreColliding: ({x: firstX, y: firstY}, {x: secondX, y: secondY, width: secondWidth}) =>
         {
             const objectsAreColliding =
-                firstObject.x >= secondObject.x - secondObject.width &&
-                firstObject.x <= secondObject.x + secondObject.width &&
-                firstObject.y >= secondObject.y - secondObject.width &&
-                firstObject.y <= secondObject.y + secondObject.width;
+                firstX >= secondX - secondWidth &&
+                firstX <= secondX + secondWidth &&
+                firstY >= secondY - secondWidth &&
+                firstY <= secondY + secondWidth;
 
             return objectsAreColliding;
         },

@@ -1,15 +1,20 @@
 class PlayingField extends GameObject
 {
-    constructor(targetDiv, height, width)
+    constructor(targetDivString, height, width)
     {
         super(0, 0, height, width);
 
+        const targetDiv = document.getElementsByClassName(targetDivString)[0];
+        targetDiv.display = 'inline-block';
+        targetDiv.height = height;
+        targetDiv.width = width;
+
         const canvas = document.createElement('canvas');
+        canvas.display = 'inline-block';
         canvas.height = height;
         canvas.width = width;
-        // FIXME: Coupling?
-        canvas.display = 'inline-block';
-        targetDiv.appendElement(canvas);
+
+        targetDiv.appendChild(canvas);
 
         this._context = canvas.getContext('2d');
     }

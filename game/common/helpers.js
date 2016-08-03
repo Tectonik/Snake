@@ -26,7 +26,7 @@ const helpers = Object.freeze(
                 firstX <= secondX + secondWidth &&
                 firstY >= secondY - secondWidth &&
                 firstY <= secondY + secondWidth;
-
+ 
             return objectsAreColliding;
         },
 

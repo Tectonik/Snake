@@ -101,6 +101,20 @@ class SnakeBodyDequeue
         }
     }
 
+    forEachAndHeadAndTail({headCallback, bodyCallback, tailCallback})
+    {
+        headCallback(this.head);
+
+        let currentSegment = this.head.rightNeighbour;
+        while (currentSegment.rightNeighbour)
+        {
+            bodyCallback(currentSegment);
+            currentSegment = currentSegment.rightNeighbour;
+        }
+
+        tailCallback(this.tail);
+    }
+
     mapToArray(callback)
     {
         let currentSegment = this.head;

@@ -9,8 +9,8 @@
 </head>
 
 <body>
-    <canvas class="playing-field">
-    </canvas>
+    <div class="playing-field">
+    </div>
 
     <!--Es6 import.. Y U NOT HERE YET? I should check up in MDN-->
     <!--P.S. Too lazy to use require.js-->
@@ -38,7 +38,7 @@
 
     <script>
         'use strict';
-        let game = new Game();
+        const game = new Game('playing-field');
         game.start();
     </script>
 

@@ -3,7 +3,7 @@ class Game
 {
     // Ctrl+shift+o -> AWESOME
     // Gargantuan constructor, needs beasts
-    constructor()
+    constructor(targetDivName)
     {
         const snake = new Snake(
             constants.SNAKE_STARTING_X,
@@ -36,7 +36,7 @@ class Game
         const canvas = document.getElementsByClassName('playing-field')[0];
 
         this._playingField = new PlayingField(
-            canvas,
+            targetDivName,
             constants.FIELD_HEIGHT,
             constants.FIELD_WIDTH
         );
@@ -59,6 +59,7 @@ class Game
                 type: constants.FEED_DEFAULT_FILL_STYLE
             });
 
+        this._parent = document.getElementsByClassName(targetDivName)[0];
         this._engine = new SnakeGameEngine(
             this._playingField,
             snake,
@@ -67,6 +68,11 @@ class Game
             [feedRenderer, snakeRenderer],
             this._playingField.gameContext
         );
+    }
+
+    get parent()
+    {
+        return this._parent;
     }
 
     get playingField()

@@ -2,7 +2,7 @@ const helpers = Object.freeze(
     {
         getRandomInRange: (min, max) =>
         {
-            const random = Math.random() * (max - min) + min;
+            const random = (Math.random() * (max - min)) + min;
             return random;
         },
 
@@ -18,8 +18,8 @@ const helpers = Object.freeze(
         //     return objectsAreColliding;
         // },
 
-        // Example of Object deconstruction, still too lazy to figure it out
-        objectsAreColliding: ({x: firstX, y: firstY}, {x: secondX, y: secondY, width: secondWidth}) =>
+        // Example of Object destructuring, still too lazy to figure it out
+        objectsAreColliding: ({ x: firstX, y: firstY }, { x: secondX, y: secondY, width: secondWidth }) =>
         {
             const objectsAreColliding =
                 firstX >= secondX - secondWidth &&
@@ -30,10 +30,14 @@ const helpers = Object.freeze(
             return objectsAreColliding;
         },
 
-        getRandomCoordinates: (limits) =>
+        getRandomCoordinates: ({
+            leftBound = constants.FIELD_LEFT,
+            rightBound = constants.FIELD_WIDTH,
+            upperBound = constants.FIELD_TOP,
+            downBound = constants.FIELD_HEIGHT}) =>
         {
-            const x = helpers.getRandomInRange(limits.leftBound, limits.rightBound);
-            const y = helpers.getRandomInRange(limits.upperBound, limits.downBound);
+            const x = +helpers.getRandomInRange(leftBound, rightBound);
+            const y = +helpers.getRandomInRange(upperBound, downBound);
 
             const randomCoordinates = { x, y };
             return randomCoordinates;

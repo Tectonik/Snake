@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^3.5.0",
+    "jsdom": "^9.4.1",
     "mocha": "^3.0.0",
     "quixote": "^0.12.3"
   }

@@ -2,3 +2,8 @@
     background-color: black;
     border: 1px solid greenyellow;
 }
+
+.playing-field > canvas{
+    background-color: black;
+    border: 1px solid lightblue;
+}

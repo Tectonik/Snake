@@ -18,7 +18,7 @@ const helpers = Object.freeze(
         //     return objectsAreColliding;
         // },
 
-        // Example of Object deconstruction
+        // Example of Object deconstruction, still too lazy to figure it out
         objectsAreColliding: ({x: firstX, y: firstY}, {x: secondX, y: secondY, width: secondWidth}) =>
         {
             const objectsAreColliding =
@@ -26,14 +26,14 @@ const helpers = Object.freeze(
                 firstX <= secondX + secondWidth &&
                 firstY >= secondY - secondWidth &&
                 firstY <= secondY + secondWidth;
- 
+
             return objectsAreColliding;
         },
 
         getRandomCoordinates: (limits) =>
         {
-            this.x = helpers.getRandomInRange(limits.leftBound, limits.rightBound);
-            this.y = helpers.getRandomInRange(limits.upperBound, limits.downBound);
+            const x = helpers.getRandomInRange(limits.leftBound, limits.rightBound);
+            const y = helpers.getRandomInRange(limits.upperBound, limits.downBound);
 
             const randomCoordinates = { x, y };
             return randomCoordinates;

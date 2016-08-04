@@ -6,7 +6,7 @@ const helpers = Object.freeze(
             return random;
         },
 
-        // I have no idea what this does or how it works *facepalm*
+        // // I have no idea what this does or how it works *facepalm*
         // objectsAreColliding: (firstObject, secondObject) =>
         // {
         //     const objectsAreColliding =
@@ -19,25 +19,35 @@ const helpers = Object.freeze(
         // },
 
         // Example of Object destructuring, still too lazy to figure it out
-        objectsAreColliding: ({ x: firstX, y: firstY }, { x: secondX, y: secondY, width: secondWidth }) =>
+        objectsAreColliding: (firstObject = { x, y }, secondObject = { x, y, width }) =>
         {
             const objectsAreColliding =
-                firstX >= secondX - secondWidth &&
-                firstX <= secondX + secondWidth &&
-                firstY >= secondY - secondWidth &&
-                firstY <= secondY + secondWidth;
+                firstObject.x >= secondObject.x - secondObject.width &&
+                firstObject.x <= secondObject.x + secondObject.width &&
+                firstObject.y >= secondObject.y - secondObject.width &&
+                firstObject.y <= secondObject.y + secondObject.width;
 
             return objectsAreColliding;
         },
 
-        getRandomCoordinates: ({
+        // // getRandomCoordinates: (bounds) =>
+        // {
+        //     const x = +helpers.getRandomInRange(bounds.leftBound, bounds.rightBound);
+        //     const y = +helpers.getRandomInRange(bounds.upperBound, bounds.downBound);
+
+        //     const randomCoordinates = { x, y };
+        //     return randomCoordinates;
+        // },
+
+        getRandomCoordinates: (bounds = {
             leftBound = constants.FIELD_LEFT,
             rightBound = constants.FIELD_WIDTH,
             upperBound = constants.FIELD_TOP,
-            downBound = constants.FIELD_HEIGHT}) =>
+            downBound = constants.FIELD_HEIGHT
+        }) =>
         {
-            const x = +helpers.getRandomInRange(leftBound, rightBound);
-            const y = +helpers.getRandomInRange(upperBound, downBound);
+            const x = +helpers.getRandomInRange(bounds.leftBound, bounds.rightBound);
+            const y = +helpers.getRandomInRange(bounds.upperBound, bounds.downBound);
 
             const randomCoordinates = { x, y };
             return randomCoordinates;

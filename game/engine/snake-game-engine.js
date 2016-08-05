@@ -180,24 +180,37 @@ class SnakeGameEngine extends GameEngine
     _startRendering(renderers, playingField, engine, snake)
     {
         // TODO: Rename, move to constants
-        const amplifier = 6;
-        function renderAllParameters([renderers, playingField, engine, snake])
+        // const amplifier = 6
+        let then = Date.now();
+        const framerate = constants.DESIRED_FRAMERATE;
+        const interval = 1000 / framerate;
+
+        (function renderAllParameters()
         {
-            engine.increaseFrameCount();
+            const now = Date.now();
+            const delta = now - then;
 
-            playingField
-                .context
-                .clearRect(constants.FIELD_LEFT, constants.FIELD_TOP, constants.FIELD_WIDTH, constants.FIELD_HEIGHT);
+            if (delta > interval)
+            {
+                engine.increaseFrameCount();
 
-            renderers.forEach(
-                (renderer) =>
-                {
-                    renderer.unrender();
-                    renderer.render();
-                });
+                playingField
+                    .context
+                    .clearRect(constants.FIELD_LEFT, constants.FIELD_TOP, constants.FIELD_WIDTH, constants.FIELD_HEIGHT);
 
-            snake.move(constants.SNAKE_SPEED / amplifier);
-        }
+                renderers.forEach(
+                    (renderer) =>
+                    {
+                        renderer.unrender();
+                        renderer.render();
+                    });
+
+                snake.move(constants.SNAKE_SPEED / framerate);
+                then = now - (delta % interval);
+            }
+
+            window.requestAnimationFrame(renderAllParameters);
+        }());
 
         window.setInterval(
             ([engine]) =>
@@ -207,15 +220,5 @@ class SnakeGameEngine extends GameEngine
             },
             1000,
             [engine]);
-
-        window.setInterval(
-            renderAllParameters,
-            constants.GAME_LOGIC_TIME_INTERVAL_IN_MILLISECONDS / amplifier,
-            [
-                renderers,
-                playingField,
-                engine,
-                snake
-            ]);
     }
 }

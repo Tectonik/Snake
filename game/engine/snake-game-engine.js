@@ -80,19 +80,26 @@ class SnakeGameEngine extends GameEngine
         // Don't forget about the cool springy effect
         // let disabledDirection = directions.none;
 
-        const directionKeys = {
-            37: directions.left,
-            38: directions.up,
-            39: directions.right,
-            40: directions.down
-        };
+        const left = directions.left;
+        const up = directions.up;
+        const right = directions.right;
+        const down = directions.down;
 
-        // FIXME: Fuck.... What shite code!
-        const oppositeDirection = {};
-        oppositeDirection[directions.right] = directions.left;
-        oppositeDirection[directions.down] = directions.up;
-        oppositeDirection[directions.left] = directions.right;
-        oppositeDirection[directions.up] = directions.down;
+        const directionKeys =
+            {
+                37: left,
+                38: up,
+                39: right,
+                40: down
+            };
+
+        const oppositeDirection =
+            {
+                left: right,
+                up: down,
+                right: left,
+                down: up
+            };
 
         return function (keypress)
         {
@@ -156,8 +163,8 @@ class SnakeGameEngine extends GameEngine
         // TODO: Refactor
         const snakeIsOutsideUpperBound = (snake.y < gameField.y);
         const snakeIsOutsideLeftBound = (snake.x < gameField.x);
-        const snakeIsOutsideLowerBound = (snake.y + snake.height > gameField.height);
-        const snakeIsOutsideRightBound = (snake.x + snake.width > gameField.width);
+        const snakeIsOutsideLowerBound = ((snake.y + snake.height) > gameField.height);
+        const snakeIsOutsideRightBound = ((snake.x + snake.width) > gameField.width);
 
         if (snakeIsOutsideUpperBound)
         {

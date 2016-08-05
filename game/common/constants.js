@@ -11,7 +11,7 @@ const constants = Object.freeze(
 
         SNAKE_STARTING_X: 350,
         SNAKE_STARTING_Y: 200,
-        SNAKE_STARTING_LENGTH: 2000,
+        SNAKE_STARTING_LENGTH: 2,
         SNAKE_SIZE: 20,
         SNAKE_DEFAULT_FILL_COLOUR: 'green',
         SNAKE_DEFAULT_STROKE_COLOUR: 'darkgreen',

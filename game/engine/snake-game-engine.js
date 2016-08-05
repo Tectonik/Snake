@@ -180,7 +180,6 @@ class SnakeGameEngine extends GameEngine
     _startRendering(renderers, playingField, engine, snake)
     {
         // TODO: Rename, move to constants
-        // const amplifier = 6
         let then = Date.now();
         const framerate = constants.DESIRED_FRAMERATE;
         const interval = 1000 / framerate;
@@ -188,7 +187,7 @@ class SnakeGameEngine extends GameEngine
         (function renderAllParameters()
         {
             const now = Date.now();
-            const delta = now - then;
+            const delta = (now - then);
 
             if (delta > interval)
             {
@@ -198,19 +197,18 @@ class SnakeGameEngine extends GameEngine
                     .context
                     .clearRect(constants.FIELD_LEFT, constants.FIELD_TOP, constants.FIELD_WIDTH, constants.FIELD_HEIGHT);
 
-                renderers.forEach(
-                    (renderer) =>
-                    {
-                        renderer.unrender();
-                        renderer.render();
-                    });
+                renderers.forEach((renderer) =>
+                {
+                    renderer.unrender();
+                    renderer.render();
+                });
 
                 snake.move(constants.SNAKE_SPEED / framerate);
                 then = now - (delta % interval);
             }
 
             window.requestAnimationFrame(renderAllParameters);
-        }());
+        } ());
 
         window.setInterval(
             ([engine]) =>

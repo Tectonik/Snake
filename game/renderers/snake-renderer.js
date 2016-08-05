@@ -26,7 +26,8 @@ class SnakeRenderer extends Renderer
         {
             // Better implementation required
             const snakeSegments = snake.body;
-            snakeSegments.forEachAndHeadAndTail(
+            snakeSegments.forEachAndHeadAndTail
+                (
                 {
                     headCallback: (head) =>
                     {
@@ -38,6 +39,7 @@ class SnakeRenderer extends Renderer
                             2 * Math.PI
                         );
                     },
+
                     bodyCallback: (segment) =>
                     {
                         context.rect(
@@ -47,6 +49,7 @@ class SnakeRenderer extends Renderer
                             segment.height
                         );
                     },
+
                     tailCallback: (tail) =>
                     {
                         context.arc(
@@ -58,7 +61,7 @@ class SnakeRenderer extends Renderer
                         );
                     }
                 }
-            );
+                );
         };
     }
 

@@ -19,7 +19,10 @@ const helpers = Object.freeze(
         // },
 
         // Example of Object destructuring, still too lazy to figure it out
-        objectsAreColliding: (firstObject = { x, y }, secondObject = { x, y, width }) =>
+        // TODO: Refactor
+        objectsAreColliding: (
+            firstObject = { x, y },
+            secondObject = { x, y, width }) =>
         {
             const objectsAreColliding =
                 firstObject.x >= secondObject.x - secondObject.width &&
@@ -39,11 +42,12 @@ const helpers = Object.freeze(
         //     return randomCoordinates;
         // },
 
+        // TODO: Refactor
         getRandomCoordinates: (bounds = {
-            leftBound = constants.FIELD_LEFT,
-            rightBound = constants.FIELD_WIDTH,
-            upperBound = constants.FIELD_TOP,
-            downBound = constants.FIELD_HEIGHT
+            leftBound,
+            rightBound,
+            upperBound,
+            downBound
         }) =>
         {
             const x = +helpers.getRandomInRange(bounds.leftBound, bounds.rightBound);

@@ -199,9 +199,7 @@ class SnakeGameEngine extends GameEngine
             {
                 engine.increaseFrameCount();
 
-                playingField
-                    .context
-                    .clearRect(constants.FIELD_LEFT, constants.FIELD_TOP, constants.FIELD_WIDTH, constants.FIELD_HEIGHT);
+                playingField.clear();
 
                 renderers.forEach((renderer) =>
                 {

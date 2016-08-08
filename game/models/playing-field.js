@@ -24,6 +24,13 @@ class PlayingField extends GameObject
         return this._context;
     }
 
+    clear()
+    {
+        this
+            .context
+            .clearRect(this.x, this.y, this.width, this.height);
+    }
+
     objectIsWithinBounds(object)
     {
         const objectIsWithinFieldBounds =

@@ -1,5 +1,6 @@
 const segmentTypes =
-    {
-        sphere: 0,
-        rectangle: 1
-    };
+    Object
+        .freeze({
+            sphere: 0,
+            rectangle: 1
+        });

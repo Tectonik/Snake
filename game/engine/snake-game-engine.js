@@ -72,7 +72,7 @@ class SnakeGameEngine extends GameEngine
     start()
     {
         this._startGameLogic(this.snake, this, this.feedCollection, this.playingField, this._goThroughOtherSide);
-        this._startRendering(this.renderers, this.playingField, this, this.snake);
+        this._startRendering(this.renderers, this.playingField, this, this.snake, constants.DESIRED_FRAMERATE);
     }
 
     startListeningForKeypresses(engine)
@@ -184,19 +184,18 @@ class SnakeGameEngine extends GameEngine
         }
     }
 
-    _startRendering(renderers, playingField, engine, snake)
+    _startRendering(renderers, playingField, engine, snake, framerate)
     {
         // TODO: Rename, move to constants
         let then = Date.now();
-        const framerate = constants.DESIRED_FRAMERATE;
         const interval = 1000 / framerate;
 
         (function renderAllParameters()
         {
             const now = Date.now();
-            const delta = (now - then);
+            const timeDelta = (now - then);
 
-            if (delta > interval)
+            if (timeDelta > interval)
             {
                 engine.increaseFrameCount();
 
@@ -210,8 +209,9 @@ class SnakeGameEngine extends GameEngine
                     renderer.render();
                 });
 
+                // Framerate coupling
                 snake.move(constants.SNAKE_SPEED / framerate);
-                then = now - (delta % interval);
+                then = now - (timeDelta % interval);
             }
 
             window.requestAnimationFrame(renderAllParameters);

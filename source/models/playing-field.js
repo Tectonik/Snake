@@ -26,9 +26,7 @@ class PlayingField extends GameObject
 
     clear()
     {
-        this
-            .context
-            .clearRect(this.x, this.y, this.width, this.height);
+        this.context.clearRect(this.x, this.y, this.width, this.height);
     }
 
     objectIsWithinBounds(object)

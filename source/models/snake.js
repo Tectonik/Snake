@@ -5,7 +5,7 @@ class Snake extends GameObject
         super(startX, startY, height, width);
 
         this._direction = directions.none;
-        this._body = new SnakeBodyDequeue(new LinkedSnakeSegment(constants.SNAKE_STARTING_X, constants.SNAKE_STARTING_Y, height, width, segmentType), segmentType);
+        this._body = new SnakeBodyDequeue(new LinkedSnakeSegment(startX, startY, height, width, segmentType), segmentType);
 
         for (let current = 1; current < startingLength; ++current)
         {
@@ -95,12 +95,6 @@ class Snake extends GameObject
     set allSegmentYCoordinates(value)
     {
         this._allSegmentYCoordinates = value;
-    }
-
-    moveToCoordinates(x, y)
-    {
-        this.body.head.x = x;
-        this.body.head.y = y;
     }
 
     changeDirection(newDirection)

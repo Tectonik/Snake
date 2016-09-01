@@ -47,4 +47,10 @@ class GameObject
     {
         this._y = value;
     }
+
+    moveToCoordinates({x, y})
+    {
+        this.body.head.x = x;
+        this.body.head.y = y;
+    }
 }

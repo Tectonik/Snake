@@ -115,7 +115,7 @@ class SnakeBodyDequeue
         tailCallback(this.tail);
     }
 
-    mapToArray(callback)
+    asArray(callback)
     {
         let currentSegment = this.head;
         const result = [];

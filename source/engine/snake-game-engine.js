@@ -14,6 +14,21 @@ class SnakeGameEngine extends GameEngine
         document.onkeydown = this.startListeningForKeypresses(this);
     }
 
+    get playingField()
+    {
+        return this._playingField;
+    }
+
+    get snake()
+    {
+        return this._snake;
+    }
+
+    get feedCollection()
+    {
+        return this._feedCollection;
+    }
+
     get snakeSpeed()
     {
         return this._snakeSpeed;
@@ -32,21 +47,6 @@ class SnakeGameEngine extends GameEngine
     set direction(value)
     {
         this._direction = value;
-    }
-
-    get playingField()
-    {
-        return this._playingField;
-    }
-
-    get snake()
-    {
-        return this._snake;
-    }
-
-    get feedCollection()
-    {
-        return this._feedCollection;
     }
 
     resetFrameCount()
@@ -101,7 +101,7 @@ class SnakeGameEngine extends GameEngine
                 down: up
             };
 
-        return function (keypress)
+        return (keypress) =>
         {
             if (keypress && directionKeys.hasOwnProperty(+keypress.keyCode))
             {
@@ -115,10 +115,10 @@ class SnakeGameEngine extends GameEngine
         };
     }
 
-    gameLost(engine)
+    gameLost(engine, reason)
     {
         engine.pause();
-        console.log('Game lost, cannibalism detected');
+        console.log(`Game lost, {reason}`);
     }
 
     gameWon()

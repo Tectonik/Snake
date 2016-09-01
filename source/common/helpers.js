@@ -44,12 +44,13 @@ const helpers =
             // },
 
             // TODO: Refactor
-            getRandomCoordinates: (bounds = {
-                leftBound,
-                rightBound,
-                upperBound,
-                downBound
-            }) =>
+            getRandomCoordinates: (bounds =
+                {
+                    leftBound,
+                    rightBound,
+                    upperBound,
+                    downBound
+                }) =>
             {
                 const x = +helpers.getRandomInRange(bounds.leftBound, bounds.rightBound);
                 const y = +helpers.getRandomInRange(bounds.upperBound, bounds.downBound);

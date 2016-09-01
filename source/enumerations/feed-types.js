@@ -1,6 +1,6 @@
 const feedTypes =
     Object
         .freeze({
-            rectange: 0,
+            rectangle: 0,
             sphere: 1
         });

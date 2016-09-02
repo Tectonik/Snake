@@ -31,34 +31,37 @@ class SnakeRenderer extends Renderer
                 {
                     headCallback: (head) =>
                     {
-                        context.arc(
+                        context.arc
+                            (
                             head.x + (head.width / 2),
                             head.y + (head.height / 2),
                             (head.width + head.height) / 3,
                             0,
                             2 * Math.PI
-                        );
+                            );
                     },
 
                     bodyCallback: (segment) =>
                     {
-                        context.rect(
+                        context.rect
+                            (
                             segment.x,
                             segment.y,
                             segment.width,
                             segment.height
-                        );
+                            );
                     },
 
                     tailCallback: (tail) =>
                     {
-                        context.arc(
+                        context.arc
+                            (
                             tail.x + (tail.width / 2),
                             tail.y + (tail.height / 2),
                             (tail.width + tail.height) / 4,
                             0,
                             2 * Math.PI
-                        );
+                            );
                     }
                 }
                 );

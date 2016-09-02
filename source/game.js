@@ -15,7 +15,8 @@ class Game
         );
 
         // TODO: Fix major issue
-        const feedStartingCoordinates = helpers.getRandomCoordinates(
+        const feedStartingCoordinates = helpers.getRandomCoordinates
+        (
             {
                 upperBound: constants.FIELD_TOP,
                 leftBound: constants.FIELD_LEFT,
@@ -25,7 +26,8 @@ class Game
         );
 
         // TODO: Refactor x and y
-        const feed = new Feed(
+        const feed = new Feed
+        (
             feedStartingCoordinates.x,
             feedStartingCoordinates.y,
             constants.FEED_SIZE,
@@ -35,13 +37,15 @@ class Game
 
         const canvas = document.getElementsByClassName('playing-field')[0];
 
-        this._playingField = new PlayingField(
+        this._playingField = new PlayingField
+        (
             targetDivName,
             constants.FIELD_HEIGHT,
             constants.FIELD_WIDTH
         );
 
-        const snakeRenderer = new SnakeRenderer(
+        const snakeRenderer = new SnakeRenderer
+        (
             snake,
             this.playingField.context,
             {
@@ -50,7 +54,8 @@ class Game
                 type: constants.SNAKE_DEFAULT_FILL_STYLE
             });
 
-        const feedRenderer = new FeedRenderer(
+        const feedRenderer = new FeedRenderer
+        (
             feed,
             this.playingField.context,
             {
@@ -60,7 +65,8 @@ class Game
             });
 
         this._parent = document.getElementsByClassName(targetDivName)[0];
-        this._engine = new SnakeGameEngine(
+        this._engine = new SnakeGameEngine
+        (
             this._playingField,
             snake,
             constants.SNAKE_SPEED,

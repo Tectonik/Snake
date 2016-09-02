@@ -1,4 +1,4 @@
-class SnakeBodyDequeue
+class SnakeBody
 {
     constructor(head, segmentType = constants.SNAKE_DEFAULT_SEGMENT_TYPE)
     {

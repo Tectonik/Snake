@@ -137,8 +137,7 @@ class SnakeGameEngine extends GameEngine
 
                 feedCollection
                     .filter((feed) => snake.caughtFeed(feed))
-                    .forEach(
-                    (feed) =>
+                    .forEach((feed) =>
                     {
                         helpers.randomizeCoordinates(feed, playingField);
                     });
@@ -160,7 +159,7 @@ class SnakeGameEngine extends GameEngine
 
     _goThroughOtherSide(snake, gameField)
     {
-        // TODO: Refactor
+        // TODO: Refactorh
         const snakeIsOutsideUpperBound = (snake.y < gameField.y);
         const snakeIsOutsideLeftBound = (snake.x < gameField.x);
         const snakeIsOutsideLowerBound = ((snake.y + snake.height) > gameField.height);

@@ -1,4 +1,4 @@
-class LinkedSnakeSegment extends GameObject
+class SnakeSegment extends GameObject
 {
     constructor(startX, startY, height, width)
     {

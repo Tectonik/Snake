@@ -2,30 +2,29 @@ class SnakeBodyDequeue
 {
     constructor(head, segmentType = constants.SNAKE_DEFAULT_SEGMENT_TYPE)
     {
-        this._head = head;
-        this._tail = head;
+        this._SegmentsLinkedList = new DoublyLinkedList(head);
         this._segmentType = segmentType;
         this._length = 1;
     }
 
     get head()
     {
-        return this._head;
+        return this._SegmentsLinkedList.leftmostNode;
     }
 
     set head(value)
     {
-        this._head = value;
+        this._SegmentsLinkedList.leftmostNode = value;
     }
 
     get tail()
     {
-        return this._tail;
+        return this._SegmentsLinkedList.rightmostNode;
     }
 
     set tail(value)
     {
-        this._tail = value;
+        this._SegmentsLinkedList.rightmostNode = value;
     }
 
     get type()
@@ -38,29 +37,16 @@ class SnakeBodyDequeue
         return this._length;
     }
 
-    set length(value)
-    {
-        this._length = value;
-    }
-
     addToTail(segment)
     {
-        this.tail.rightNeighbour = segment;
-        segment.leftNeighbour = this.tail;
-        segment.rightNeighbour = null;
-
-        this.tail = segment;
+        this._SegmentsLinkedList.addToRight(segment);
 
         ++this.length;
     }
 
     addToHead(segment)
     {
-        this.head.leftNeighbour = segment;
-        segment.rightNeighbour = this.head;
-        segment.leftNeighbour = null;
-
-        this.head = segment;
+        this._SegmentsLinkedList.addToLeft(segment);
 
         ++this.length;
     }
@@ -91,16 +77,6 @@ class SnakeBodyDequeue
         return leftmostElement;
     }
 
-    forEach(callback)
-    {
-        let currentSegment = this.head;
-        while (currentSegment)
-        {
-            callback(currentSegment);
-            currentSegment = currentSegment.rightNeighbour;
-        }
-    }
-
     forEachAndHeadAndTail({headCallback, bodyCallback, tailCallback})
     {
         headCallback(this.head);
@@ -113,20 +89,5 @@ class SnakeBodyDequeue
         }
 
         tailCallback(this.tail);
-    }
-
-    asArray(callback)
-    {
-        let currentSegment = this.head;
-        const result = [];
-        while (currentSegment)
-        {
-            const currentResult = callback(currentSegment);
-            currentSegment = currentSegment.rightNeighbour;
-
-            result.push(currentResult);
-        }
-
-        return result;
     }
 }

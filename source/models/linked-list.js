@@ -1,99 +1,57 @@
-class SnakeBodyDequeue
+class DoublyLinkedList
 {
-    constructor(head, segmentType = constants.SNAKE_DEFAULT_SEGMENT_TYPE)
+    constructor(firstNode)
     {
-        this._head = head;
-        this._tail = head;
-        this._segmentType = segmentType;
+        this._firstNode = firstNode;
+        this._lastNode = firstNode;
         this._length = 1;
     }
 
-    get head()
+    get firstNode()
     {
-        return this._head;
+        return this._firstNode;
     }
 
-    set head(value)
+    set firstNode(value)
     {
-        this._head = value;
+        this._firstNode = value;
     }
 
-    get tail()
+    get lastNode()
     {
-        return this._tail;
+        return this._lastNode;
     }
 
-    set tail(value)
+    set lastNode(value)
     {
-        this._tail = value;
+        this._lastNode = value;
     }
 
-    get type()
+    addToRight(segment)
     {
-        return this._segmentType;
-    }
-
-    get length()
-    {
-        return this._length;
-    }
-
-    set length(value)
-    {
-        this._length = value;
-    }
-
-    addToTail(segment)
-    {
-        this.tail.rightNeighbour = segment;
-        segment.leftNeighbour = this.tail;
+        this.lastNode.rightNeighbour = segment;
+        segment.leftNeighbour = this.lastNode;
         segment.rightNeighbour = null;
 
-        this.tail = segment;
+        this.lastNode = segment;
 
         ++this.length;
     }
 
-    addToHead(segment)
+    addToLeft(segment)
     {
-        this.head.leftNeighbour = segment;
-        segment.rightNeighbour = this.head;
+        this.firstNode.leftNeighbour = segment;
+        segment.rightNeighbour = this.firstNode;
         segment.leftNeighbour = null;
 
-        this.head = segment;
+        this.firstNode = segment;
 
         ++this.length;
-    }
-
-    popRightmostElement()
-    {
-        const rightmostElement = this.tail;
-        const leftToRightmostElement = this.tail.leftNeighbour;
-
-        this.tail = leftToRightmostElement;
-        this.tail.rightNeighbour = null;
-
-        --this.length;
-
-        return rightmostElement;
-    }
-
-    popLeftmostElement()
-    {
-        const leftmostElement = this.head;
-        const rightToLeftmostElement = this.head.rightNeighbour;
-
-        this.head = rightToLeftmostElement;
-        this.head.leftNeighbour = null;
-
-        --this.length;
-
-        return leftmostElement;
     }
 
     forEach(callback)
     {
-        let currentSegment = this.head;
+        let currentSegment = this.firstNode;
         while (currentSegment)
         {
             callback(currentSegment);
@@ -101,23 +59,11 @@ class SnakeBodyDequeue
         }
     }
 
-    forEachAndHeadAndTail({headCallback, bodyCallback, tailCallback})
-    {
-        headCallback(this.head);
-
-        let currentSegment = this.head.rightNeighbour;
-        while (currentSegment.rightNeighbour)
-        {
-            bodyCallback(currentSegment);
-            currentSegment = currentSegment.rightNeighbour;
-        }
-
-        tailCallback(this.tail);
-    }
-
+    // Where do I use this again?
+    // TODO: Delete
     asArray(callback)
     {
-        let currentSegment = this.head;
+        let currentSegment = this.firstNode;
         const result = [];
         while (currentSegment)
         {
